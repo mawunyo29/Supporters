@@ -11,7 +11,7 @@
 
             <button @click="open_modal =true" id="btn_open" class=" hidden">message</button>
             <div id=show
-                class=" sm:w-1/3 w-full rounded-lg shadow-md sm:ml-8  divide-x-2  overflow-hidden sm:px-2 ring-2 px-2 flex dark:bg-white"
+                class=" sm:w-1/3 w-full rounded-lg shadow-md sm:ml-8  divide-x-2 absolute  overflow-hidden sm:px-2 ring-2 p-2 flex dark:bg-gray-800 z-20 "
                 x-show="open_modal" x-on:close.stop="modal = false" x-on:keydown.escape.window="modal = false"
                 x-transition:enter="transition ease-out duration-500 ease-out origin-left "
                 x-transition:enter-start="opacity-0 transform scale-95 -translate-x-full"
@@ -22,10 +22,10 @@
                 role="alert">
 
                 <div>
-                    <h3 class="font-semibold text-xl text-gray-800 leading-tight">
+                    <h3 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white">
                         {{ __(session('success')) }}
                     </h3>
-                    <p class="mt-2 text-gray-600">
+                    <p class="mt-2 text-gray-600 dark:text-white">
                         {{ __('This is your dashboard, where you can manage your account, view your orders, and view
                         your
                         cart.') }}
@@ -34,7 +34,7 @@
                 </div>
                 <div class="flex justify-items-center justify-center relative cursor-pointer " id="close_modal"
                     @click="open_modal=false">
-                    <span class="material-symbols-outlined justify-end py-8">
+                    <span class="material-symbols-outlined justify-end py-8 ">
                         close
                     </span>
                 </div>
@@ -517,11 +517,19 @@
                 </div>
             </div>
         </div> --}}
-        <div class="h-full top-0 bottom-0 w-1/2 ">
+        <div class="md:flex md:flex-row relative block">
+          <div class=" top-0 bottom-0 md:w-1/2  md:absolute overflow-auto will-change-scroll w-full">
 
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, quos repellendus voluptate itaque vitae quia facilis. Adipisci, esse. Architecto laudantium dolorum earum velit. Temporibus vitae nam, repudiandae nobis optio facere.
 
         </div>
+        <div class="top-0 bottom-0 md:w-1/2 md:absolute right-0 w-full">
+
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, quos repellendus voluptate itaque vitae quia facilis. Adipisci, esse. Architecto laudantium dolorum earum velit. Temporibus vitae nam, repudiandae nobis optio facere.
+
+        </div>  
+        </div>
+        
 
     </div>
 

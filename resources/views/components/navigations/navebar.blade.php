@@ -1,5 +1,5 @@
-<div x-data="{ open: false }" >
-  <nav class=" w-full  overflow-hidden mx-auto px-4 sm:px-6 lg:px-8">
+<div x-data="{ open: false }">
+  <nav class=" w-full  overflow-hidden mx-auto px-4 sm:px-6 lg:px-8 ">
     {{-- brand --}}
     <div class="flex justify-between h-16 space-x-2">
       <div class="flex">
@@ -118,13 +118,13 @@
     </div>
   </div>
 
-  <div id="left-nav h-full" ondrop="drop_handler(event)"
-    class="z-10   relative divide-y divide-gray-100 rounded dark:divide-transparent pr-2 dark:divide-gray-600 float-right mt-14 space-y-3 items-center rtl:mr-3">
-    <div class="px-4 py-5 text-sm text-gray-900 dark:text-white">
+  <div id="left-nav " ondrop="drop_handler(event)"
+    class="z-40 min-h-0  divide-y divide-gray-100 rounded dark:divide-transparent pr-2 dark:divide-gray-600  mt-14 space-y-3 items-center right-0 rtl:mr-5 absolute ">
+    <div class="px-4 py-5 text-sm text-gray-900 dark:text-white relative">
       <div></div>
       <div class="font-medium truncate "></div>
     </div>
-    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200 w-20 space-y-4 "
+    <ul class="py-1 text-sm text-gray-700 dark:text-gray-200 w-20 space-y-4 relative"
       aria-labelledby="dropdownInformationButton">
       <li id="notification" draggable="true" ondragstart="dragstart_handler(event)"
         class=" rounded-md ring-4 ring-offset-2 ring-gray-600 flex justify-center hover:bg-gray-100 relative  dark:hover:bg-gray-300 dark:bg-gray-800 bg-chat_ ">
@@ -150,7 +150,7 @@
       </li>
     </ul>
     <div
-      class=" rounded-lg ring-4 flex justify-center w-20 ring-offset-2 ring-gray-600  py-1 hover:bg-gray-100  dark:hover:bg-gray-300 dark:bg-gray-800 bg-logout_ ">
+      class=" absolute rounded-lg ring-4 flex justify-center w-20 ring-offset-2 ring-gray-600  py-1 hover:bg-gray-100  dark:hover:bg-gray-300 dark:bg-gray-800 bg-logout_ ">
       <form method="POST" action="{{ route('logout') }}" x-data>
         @csrf
 
@@ -163,9 +163,20 @@
       </form>
 
     </div>
+    <div class="pb-4">
+      <div
+        class="rounded-full cursor-pointer  ring-4 ring-offset-2 ring-gray-600 flex justify-around items-center w-10 h-10 hover:bg-gray-100 m-8  dark:hover:bg-gray-300 dark:bg-gray-800 fixed bottom-0 mb-10 right-0 ">
+        <span class="material-symbols-outlined icon_setting">
+          settings
+        </span>
+
+      </div>
+    </div>
+
+
   </div>
   @push('scripts')
-    <script>
+  <script>
     function dragstart_handler(ev) {
      // On ajoute l'identifiant de l'élément cible à l'objet de transfert
      ev.dataTransfer.setData("Supporters", ev.target.id);
@@ -184,7 +195,7 @@
      var data = ev.dataTransfer.getData("Supporters");
      ev.target.appendChild(document.getElementById(data));
     }
-    </script>  
+  </script>
   @endpush
-  
+
 </div>

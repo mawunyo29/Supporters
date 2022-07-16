@@ -62,4 +62,42 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
+
+    /**
+     * Get the user's freinds.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function friends()
+    {
+        return $this->hasMany(User::class, 'id', 'friend_id');
+    }
+
+    /**
+     * Get the user's friend requests.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    // public function friendRequests()
+    // {
+    //     return $this->hasMany(FriendRequest::class, 'user_id', 'id');
+    // }
+
+    /**
+     * Get the user's friend requests.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    
+    public function friendRequests()
+    {
+        return $this->hasMany(FriendRequest::class, 'user_id', 'id');
+    }
 }

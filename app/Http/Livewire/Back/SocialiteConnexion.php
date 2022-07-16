@@ -30,7 +30,7 @@ class SocialiteConnexion extends Component
             $user = User::where('email', $user_socialite->email)->first();
             if($user){
                 auth()->login($user);
-                return redirect($this->redirect)->with('success', 'bonjour '.$user->name);
+                return redirect($this->redirect)->with('success', 'Bonjour '.$user->name .' vous êtes connecté avec succès!');
             }else{
                 $user = User::updateOrCreate(['provider_id'=>$user_socialite->id],[
                     'name' => $user_socialite->name,

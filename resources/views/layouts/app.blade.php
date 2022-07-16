@@ -38,7 +38,7 @@
                 <div class="">
                     <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg"
                         alt="avatar image"
-                        class="inline-flex items-center justify-center w-12 h-12 mr-2 rounded-full text-white transition-all duration-200 ease-in-out text-size-sm rounded-circle" />
+                        class="cursor-pointer inline-flex items-center justify-center w-12 h-12 mr-2 rounded-full text-white transition-all duration-200 ease-in-out text-size-sm rounded-circle" />
                 </div>
 
             </div>
@@ -117,7 +117,7 @@
                                         d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
                                     </path>
                                 </svg>
-                                Team
+                              Amis
                             </a>
 
                             <a href="#"
@@ -131,7 +131,7 @@
                                         d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z">
                                     </path>
                                 </svg>
-                                Projects
+                               Ajouter
                             </a>
 
                             <a href="#"
@@ -145,7 +145,7 @@
                                         d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
                                     </path>
                                 </svg>
-                                Calendar
+                                En attente
                             </a>
 
                             <a href="#"
@@ -159,7 +159,7 @@
                                         d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4">
                                     </path>
                                 </svg>
-                                Documents
+                                Blog
                             </a>
 
                             <a href="#"
@@ -250,7 +250,7 @@
                                         d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
                                     </path>
                                 </svg>
-                                <p class="left_slider_content" id="team"> Team</p>
+                                <p class="left_slider_content" id="team"> Amis</p>
                             </a>
 
                             <a href="#"
@@ -264,7 +264,7 @@
                                         d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z">
                                     </path>
                                 </svg>
-                                <p class="left_slider_content"> Project</p>
+                                <p class="left_slider_content">Ajouter</p>
                             </a>
 
                             <a href="#"
@@ -278,7 +278,7 @@
                                         d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
                                     </path>
                                 </svg>
-                                <p class="left_slider_content"> Calendar</p>
+                                <p class="left_slider_content"> En attente</p>
                             </a>
 
                             <a href="#"
@@ -292,7 +292,7 @@
                                         d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4">
                                     </path>
                                 </svg>
-                                <p class="left_slider_content"> Documents</p>
+                                <p class="left_slider_content"> Blog</p>
                             </a>
 
                             <a href="#"
@@ -358,17 +358,11 @@
 
                         </div>
                     </div>
-                   
-                </main>
-                <div
-                class="rounded-full  ring-4 ring-offset-2 ring-gray-600 flex justify-around items-center w-10 h-10 hover:bg-gray-100 m-8  dark:hover:bg-gray-300 dark:bg-gray-800 absolute bottom-0 right-0 ">
-                <span class="material-symbols-outlined icon_setting"  >
-                    settings
-                </span>
-                
-            </div>
 
-                
+                </main>
+               
+
+
             </div>
         </div>
 
