@@ -4979,7 +4979,78 @@ __webpack_require__.r(__webpack_exports__);
 
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"];
-alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"].start();
+alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"].start(); // Language: javascript
+// On page load or when changing themes, best to add inline in `head` to avoid FOUC
+// Whenever the user explicitly chooses light mode
+//   localStorage.theme = 'light'
+// Whenever the user explicitly chooses dark mode
+//   localStorage.theme = 'dark'
+// Whenever the user explicitly chooses to respect the OS preference
+//localStorage.removeItem('theme')
+//slider
+
+window.onload = function () {
+  if (localStorage.theme === 'dark' || !('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.classList.add('dark');
+    console.log('dark theme');
+    document.getElementById('light').classList.remove('hidden');
+  } else {
+    document.documentElement.classList.remove('dark');
+    console.log('light theme');
+  } // On theme change, update localStorage
+
+
+  document.addEventListener('click', function (e) {
+    if (e.target.id === 'dark-mode-switch') {
+      localStorage.setItem('theme', 'dark');
+      document.documentElement.classList.add('dark');
+      document.getElementById('dark-mode-switch').classList.add('hidden');
+      document.getElementById('light').classList.remove('hidden');
+      console.log('dark je suis la');
+    } else if (e.target.id === 'light') {
+      localStorage.setItem('theme', 'light');
+      document.documentElement.classList.remove('dark');
+      document.getElementById('dark-mode-switch').classList.remove('hidden');
+      document.getElementById('light').classList.add('hidden');
+      console.log('light je suis la');
+    }
+  }); //slibar navigation  
+
+  var retract = false;
+  var slidebar;
+  document.addEventListener('click', function (e) {
+    if (e.target.id == "reduce_btn") {
+      retract = document.getElementById("reduce_btn");
+      slidebar = document.getElementById("sidebar");
+
+      if (retract.hasAttribute("retract")) {
+        slidebar.style.width = "16rem";
+        retract.removeAttribute("retract");
+        document.getElementById("logo_dash_l").style.display = "block";
+        retract.style.transform =  true ? "rotate(0deg)" : 0;
+        retract.style.transition = "transform 0.5s";
+        retract.style.transitionTimingFunction = "ease-in-out";
+        document.querySelectorAll(".left_slider_content").forEach(function (element) {
+          element.style.display = "block";
+        });
+        console.log(e.target.id);
+      } else {
+        slidebar.classList.remove("w-64");
+        slidebar.style.width = "4rem";
+        slidebar.classList.add("transition-all", 'duration-500');
+        retract.style.transform = "rotate(180deg)";
+        retract.setAttribute("retract", "sidebar_retracted");
+        document.getElementById("logo_dash_l").style.display = "none";
+        document.querySelectorAll(".left_slider_content").forEach(function (element) {
+          element.style.display = "none";
+        });
+      }
+
+      slidebar.classList.add("transition-all", 'duration-500');
+      retract.style.transition = "transform 0.5s";
+    }
+  });
+};
 
 /***/ }),
 
@@ -22239,6 +22310,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./build.css":
+/*!*******************!*\
+  !*** ./build.css ***!
+  \*******************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
 /***/ "./node_modules/process/browser.js":
 /*!*****************************************!*\
   !*** ./node_modules/process/browser.js ***!
@@ -22579,6 +22663,7 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
+/******/ 			"css/build": 0,
 /******/ 			"css/app": 0
 /******/ 		};
 /******/ 		
@@ -22629,8 +22714,9 @@ module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"P
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/app"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/build","css/app"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/build","css/app"], () => (__webpack_require__("./resources/css/app.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/build","css/app"], () => (__webpack_require__("./build.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

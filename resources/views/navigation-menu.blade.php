@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+{{-- <nav x-data="{ open: false }" class="bg-white border-b border-gray-100 ">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -135,7 +135,13 @@
     </div>
 
     <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden" 
+    x-transition:enter="transition ease-out duration-500 ease-out origin-left "
+    x-transition:enter-start="opacity-0 transform scale-95 -translate-x-full"
+    x-transition:enter-end="opacity-100 transform scale-100 "
+    x-transition:leave="transition ease-in duration-500 origin-bottom"
+    x-transition:leave-start="opacity-100 transform scale-100 "
+    x-transition:leave-end="opacity-0 transform scale-95 -translate-x-full">
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
@@ -143,7 +149,7 @@
         </div>
 
         <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
+        <div class="pt-4 pb-1 border-t border-gray-200 " >
             <div class="flex items-center px-4">
                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                     <div class="shrink-0 mr-3">
@@ -212,4 +218,6 @@
             </div>
         </div>
     </div>
-</nav>
+</nav> --}}
+
+<x-navigations.navebar></x-navigations.navebar>

@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.rotaion-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@keyframes rotaionglobe {
+ 
+  to {
+    
+    transform: rotate3d(0,3,0,360deg)
+  }
+  
+}
+.rotaion-center {
+  animation: rotaionglobe 2s linear infinite;
+  
+}
+
+.material-symbols-outlined {
+  
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 600,
+  'GRAD' 0,
+  'opsz' 48
+
+}
+#light{
+
+  color: white;
+}
+.material-symbols-outlined.icon_setting{
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 600,
+  'GRAD' 0,
+  'opsz' 50
+}
