@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Back\FriendsController;
 use App\Http\Livewire\Back\SocialiteConnexion;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,10 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::prefix('/dashboard')->group(function () {
+        Route::get('/user/{id}', [FriendsController::class ,'friendRequest'])->name('add_to_friends');
+    });
 });
 
 Route::get('/auth/{slug}', [SocialiteConnexion::class, 'socialiteRedirect'])->name('socialite.redirect');

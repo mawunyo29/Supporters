@@ -3,6 +3,8 @@
 namespace App\Http\Livewire\Back;
 
 use App\Models\User;
+use App\Notifications\FriendInviteNotification;
+use Illuminate\Support\Facades\Blade;
 use Livewire\Component;
 
 class FriendsController extends Component
@@ -12,6 +14,16 @@ class FriendsController extends Component
     public $search;
     public $pagination;
     private $auth_user;
+    public $friend_to_delete;
+    public $friend_to_accept;
+    public $friend_to_decline;
+    public $friend_to_block;
+    public $friend_to_unblock;
+    public $message;
+    public $message_to;
+    public $message_subject;
+    public $message_body;
+
 
     public function mount()
     {
@@ -55,10 +67,43 @@ class FriendsController extends Component
     public function friendRequest($id)
     {
         $this->user_to_add = User::findOrfail($id);
-    }
-    
 
+        return Blade::render('dashboard', [
+            'user_to_add' => $this->user_to_add,
+        ]);
+
+    }
+    /**
+     * 
+     * block friend
+     */
     
+    public function blockFriend($id)
+    {
+        $this->friend_to_block = $this->auth_user->friends()->where('id', $id)->first();
+        $this->friend_to_block->block();
+        $this->getFriends();
+        
+    }
+    /**
+     * 
+     * send friend request
+     */
+    public function sendFriendRequest()
+    {
+       
+       $this->notify($this->user_to_add, new FriendInviteNotification($this->auth_user));
+        $this->getFriends();
+    }
+
+    /**
+     * 
+     * accept friend request
+     */
+    public function acceptUserAsFriend(){
+
+        
+    }
 
 
 

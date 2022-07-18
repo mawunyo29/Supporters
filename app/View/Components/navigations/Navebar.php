@@ -2,6 +2,7 @@
 
 namespace App\View\Components\navigations;
 
+use App\Models\User;
 use Illuminate\View\Component;
 
 class Navebar extends Component
@@ -11,10 +12,14 @@ class Navebar extends Component
      *
      * @return void
      */
-    public function __construct()
+    public $user;
+    public $search ="";
+    public $users;
+    public function __construct(User $user)
     {
-        //
+        $this->user = $user;
     }
+   
 
     /**
      * Get the view / contents that represent the component.
@@ -23,6 +28,8 @@ class Navebar extends Component
      */
     public function render()
     {
+       
+       $this->users = User::where('name', 'like', '%' . $this->search . '%')->get();
         return view('components.navigations.navebar');
     }
 }

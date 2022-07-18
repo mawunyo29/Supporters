@@ -11,7 +11,7 @@
 
             <button @click="open_modal =true" id="btn_open" class=" hidden">message</button>
             <div id=show
-                class=" sm:w-1/3 w-full rounded-lg shadow-md sm:ml-8  divide-x-2 absolute  overflow-hidden sm:px-2 ring-2 p-2 flex dark:bg-gray-800 z-20 "
+                class=" sm:w-1/3 w-full rounded-lg shadow-md sm:ml-8  divide-x-2 absolute  overflow-hidden sm:px-2 ring-2 p-2 bg-white flex dark:bg-gray-800 z-20 "
                 x-show="open_modal" x-on:close.stop="modal = false" x-on:keydown.escape.window="modal = false"
                 x-transition:enter="transition ease-out duration-500 ease-out origin-left "
                 x-transition:enter-start="opacity-0 transform scale-95 -translate-x-full"
@@ -46,6 +46,7 @@
             </div>
         </div>
         @endif
+       
 
         <!-- component -->
         {{-- <div class="flex flex-row h-screen antialiased text-gray-800  m-0 overflow-hidden ">
@@ -517,19 +518,24 @@
                 </div>
             </div>
         </div> --}}
-        <div class="md:flex md:flex-row relative block">
-          <div class=" top-0 bottom-0 md:w-1/2  md:absolute overflow-auto will-change-scroll w-full">
+        <div class="md:flex md:flex-row relative block z-0">
+            <div class="  md:w-1/2  md:absolute overflow-auto will-change-scroll w-full">
 
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, quos repellendus voluptate itaque vitae quia facilis. Adipisci, esse. Architecto laudantium dolorum earum velit. Temporibus vitae nam, repudiandae nobis optio facere.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, quos repellendus voluptate itaque
+                vitae quia facilis. Adipisci, esse. Architecto laudantium dolorum earum velit. Temporibus vitae nam,
+                repudiandae nobis optio facere.
+                
 
+            </div>
+            <div class=" md:w-1/2 md:absolute right-0 w-full">
+
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, quos repellendus voluptate itaque
+                vitae quia facilis. Adipisci, esse. Architecto laudantium dolorum earum velit. Temporibus vitae nam,
+                repudiandae nobis optio facere.
+
+            </div>
         </div>
-        <div class="top-0 bottom-0 md:w-1/2 md:absolute right-0 w-full">
 
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, quos repellendus voluptate itaque vitae quia facilis. Adipisci, esse. Architecto laudantium dolorum earum velit. Temporibus vitae nam, repudiandae nobis optio facere.
-
-        </div>  
-        </div>
-        
 
     </div>
 

@@ -42,7 +42,7 @@ class SocialiteConnexion extends Component
                 ]);
                 auth()->login($user);
                 
-                return redirect($this->redirect)->now('success', 'Bonjour '.$user->name.' vous etes connecté avec succès'); //redirect to dashboard
+                return redirect($this->redirect)->with('success', 'Bonjour '.$user->name.' bienvenue à votre espace, vous etes connecté avec succès'); //redirect to dashboard
             }
         }
         

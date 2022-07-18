@@ -14,12 +14,12 @@
       </div>
       <form class="flex items-center ">
         <div class="flex items-center">
-          <label for="location-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Your
-            Email</label>
+          <label for="location-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Use'rs
+            </label>
 
           <div class="relative">
             <div class="relative w-full">
-              <input type="search" id="location-search&quot;"
+              <input type="search" id="location-search&quot;" name="search"
                 class="block p-2.5 w-full px-10 z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg rounded-l-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
                 placeholder="Search for city or address" required="">
 
@@ -42,6 +42,16 @@
               </svg>
             </button>
           </div>
+        </div>
+        <div class="bg-blue-500">
+          @if ($users->count() > 0 )
+          @foreach ($users as $user)
+              {{$user->name}}
+          @endforeach
+             
+          @else
+              {{__('there are no users')}}
+          @endif
         </div>
       </form>
       <div class="items-center sm:ml-2 flex justify-between ">
@@ -73,21 +83,21 @@
     x-show="open" aria-labelledby="slide-over-title" x-ref="dialog" aria-modal="true">
     <div class="absolute inset-0 overflow-hidden">
       <div x-description="Background overlay, show/hide based on slide-over state." class="absolute inset-0"
-        @click="open = false" aria-hidden="true">
+       aria-hidden="true">
 
-        <div class="fixed inset-y-0 right-0 pl-10 max-w-full flex sm:pl-16">
+        <div class="fixed inset-y-0 right-0 pl-10 max-w-full flex sm:pl-16 z-20">
 
           <div x-show="open" x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
             x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
             x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
             x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
-            class="w-screen max-w-2xl" x-description="Slide-over panel, show/hide based on slide-over state."
+            class="w-screen max-w-2xl " x-description="Slide-over panel, show/hide based on slide-over state."
             style="display: none">
             <div class="h-full flex flex-col py-6 bg-white shadow-xl overflow-y-scroll">
               <div class="px-4 sm:px-6">
                 <div class="flex items-start justify-between">
                   <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">
-                    Panel title
+                    Discussions
                   </h2>
                   <div class="ml-3 h-7 flex items-center">
                     <button type="button"
@@ -103,7 +113,7 @@
                   </div>
                 </div>
               </div>
-              <div class="mt-6 relative flex-1 px-4 sm:px-6">
+              <div class="mt-6 relative flex-1 px-4 sm:px-6 ">
                 <!-- Replace with your content -->
                 <div class="absolute inset-0 px-4 sm:px-6">
                   <div class="h-full border-2 border-dashed border-gray-200" aria-hidden="true"></div>

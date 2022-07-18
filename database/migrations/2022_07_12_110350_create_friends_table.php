@@ -19,6 +19,7 @@ class CreateFriendsTable extends Migration
             $table->string('name');
             $table->string('avatar')->nullable();
             $table->boolean('is_online')->default(false);
+            $table->boolean('is_blocked')->default(false);
             $table->softDeletes('deleted_at', 0);
             $table->timestamps();
         });

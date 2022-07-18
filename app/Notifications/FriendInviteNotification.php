@@ -2,6 +2,7 @@
 
 namespace App\Notifications;
 
+use App\Models\Friend;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -16,10 +17,11 @@ class FriendInviteNotification extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Friend $friend)
     {
-        //
+        $this->friend = $friend;
     }
+   
 
     /**
      * Get the notification's delivery channels.
@@ -29,7 +31,7 @@ class FriendInviteNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail','database'];
     }
 
     /**
