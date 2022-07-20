@@ -100,6 +100,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(FriendRequest::class, 'user_id', 'id');
     }
+    /**
+     * search user by name
+     * @param  string $name
+     */
+    public static function search($name)
+    {
+        return User::where('name', 'like', '%' .trim($name). '%')->get();
+    }
 
    
 }

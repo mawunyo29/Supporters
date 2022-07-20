@@ -4,7 +4,10 @@ namespace App\Http\Livewire\Back;
 
 use App\Models\User;
 use App\Notifications\FriendInviteNotification;
+use Illuminate\Queue\Middleware\ThrottlesExceptions;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 
 class FriendsController extends Component
@@ -13,7 +16,7 @@ class FriendsController extends Component
     public $user_to_add;
     public $search;
     public $pagination;
-    private $auth_user;
+    public $auth_user;
     public $friend_to_delete;
     public $friend_to_accept;
     public $friend_to_decline;
@@ -23,14 +26,19 @@ class FriendsController extends Component
     public $message_to;
     public $message_subject;
     public $message_body;
+    public $is_open_send_invitation = true;
+    public $user;
 
 
-    public function mount()
+    public function mount(User $user)
     {
-        $this->auth_user = auth()->user;
-        $this->friends = $this->auth_user->friends();
-        $this->pagination = $this->friends->paginate(10);
+        $this->auth_user = Auth::user();
+       $this->user = $user;
+       
+       
     }
+    protected $listeners = ["sendRequest"
+    ];
     /**
      * get alls friends when the user is connected
      * 
@@ -61,17 +69,52 @@ class FriendsController extends Component
     }
 
     /**
-     * friend request
+     * send request to any user
      * 
      */
-    public function friendRequest($id)
+    public function sendRequest($id)
     {
         $this->user_to_add = User::findOrfail($id);
-
+       
+       
         return Blade::render('dashboard', [
-            'user_to_add' => $this->user_to_add,
+            'user' => $this->user_to_add,
+            'auth_user' => $this->auth_user,
         ]);
 
+    }
+    /**
+     * open the send invitation modal
+     * 
+     */
+    public function updatedIsOpenSendInvitation()
+    {
+        $this->is_open_send_invitation = !$this->is_open_send_invitation;
+       
+        redirect()->back();
+    }
+    public function addFriend()
+    {
+       
+       
+       try {
+        //code...
+        if($this->user->notifications->first()->data["user_id"] == $this->auth_user->id && $this->user->notifications->first()->created_at->format("d Y") == now()->format('d Y')){
+            redirect()->to('/dashboard')->with('error', 'You have already sent a request to this user');
+        }else{
+            $this->user->notify(new FriendInviteNotification($this->auth_user));
+           redirect()->to('/dashboard')->with('success', 'Request sent successfully');
+        }
+        
+
+        
+       } catch (ThrottlesExceptions $e) {
+              # code...
+              return redirect()->back()->with('error', 'Vous avez déjà envoyé une invitation à cet utilisateur ou il l\'a déjà reçu');
+       }
+      
+   
+        
     }
     /**
      * 
@@ -104,6 +147,51 @@ class FriendsController extends Component
 
         
     }
+    /**
+     * 
+     * decline friend request
+     */
+    public function declineUserAsFriend(){
+
+
+    }
+    /**
+     * 
+     * delete friend
+     */
+    public function deleteFriend($id)
+    {
+        $this->friend_to_delete = $this->auth_user->friends()->where('id', $id)->first();
+        $this->friend_to_delete->delete();
+        $this->getFriends();
+    }
+
+    /**
+     * 
+     * send message
+     */
+    public function sendMessage()
+    {
+      
+    }
+    /**
+     * 
+     * get message
+     */
+    public function getMessage()
+    {
+        
+    }
+    /**
+     * 
+     * delete message
+     */
+    public function deleteMessage()
+    {
+        
+    }
+    
+     
 
 
 
@@ -111,4 +199,6 @@ class FriendsController extends Component
     {
         return view('livewire.back.friends-controller');
     }
+
+   
 }

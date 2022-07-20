@@ -3,6 +3,7 @@
 namespace App\View\Components\navigations;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\Component;
 
 class Navebar extends Component
@@ -12,12 +13,12 @@ class Navebar extends Component
      *
      * @return void
      */
-    public $user;
+    public  $user;
     public $search ="";
     public $users;
-    public function __construct(User $user)
+    public function __construct()
     {
-        $this->user = $user;
+        $this->user = Auth::user();
     }
    
 
@@ -28,8 +29,8 @@ class Navebar extends Component
      */
     public function render()
     {
-       
-       $this->users = User::where('name', 'like', '%' . $this->search . '%')->get();
+       $this->search = request()->query('search');
+       $this->users = User::search($this->search);
         return view('components.navigations.navebar');
     }
 }

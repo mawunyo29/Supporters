@@ -35,11 +35,7 @@
         <header class="bg-white shadow   dark:bg-blue-800">
             <div class="max-w-7xl mx-auto py-1 px-4 sm:px-6 lg:px-8">
                 {{ $header }}
-                <div class="">
-                    <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg"
-                        alt="avatar image"
-                        class="cursor-pointer inline-flex items-center justify-center w-12 h-12 mr-2 rounded-full text-white transition-all duration-200 ease-in-out text-size-sm rounded-circle" />
-                </div>
+               
 
             </div>
         </header>

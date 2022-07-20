@@ -2,6 +2,8 @@
 
 use App\Http\Livewire\Back\FriendsController;
 use App\Http\Livewire\Back\SocialiteConnexion;
+use App\Http\Livewire\Searchs\SearchController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 
@@ -26,11 +28,13 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return view('dashboard');
+        $user = Auth::user();
+        return view('dashboard',compact('user'));
     })->name('dashboard');
 
     Route::prefix('/dashboard')->group(function () {
-        Route::get('/user/{id}', [FriendsController::class ,'friendRequest'])->name('add_to_friends');
+        Route::get('/user/{id}', [FriendsController::class ,'sendRequest'])->name('add_to_friends');
+        Route::get('/search/{id}', [SearchController::class ,'sendInvitation'])->name('send_request');
     });
 });
 

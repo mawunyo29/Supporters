@@ -1,7 +1,7 @@
 <div x-data="{ open: false }">
   <nav class=" w-full  overflow-hidden mx-auto px-4 sm:px-6 lg:px-8 ">
     {{-- brand --}}
-    <div class="flex justify-between h-16 space-x-2">
+    <div class="flex justify-between flex-row h-16 space-x-2 md:space-x-6">
       <div class="flex">
         <div class="shrink-0 flex items-center" id="logo_supporters">
 
@@ -12,48 +12,11 @@
         </div>
 
       </div>
-      <form class="flex items-center ">
-        <div class="flex items-center">
-          <label for="location-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Use'rs
-            </label>
-
-          <div class="relative">
-            <div class="relative w-full">
-              <input type="search" id="location-search&quot;" name="search"
-                class="block p-2.5 w-full px-10 z-20 text-sm text-gray-900 bg-gray-50 rounded-r-lg rounded-l-lg border-l-gray-50 border-l-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-l-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                placeholder="Search for city or address" required="">
-
-              <button type="button" class="flex absolute inset-y-0 right-0 items-center pr-2">
-                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-                  fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd"
-                    d="M7 4a3 3 0 016 0v4a3 3 0 11-6 0V4zm4 10.93A7.001 7.001 0 0017 8a1 1 0 10-2 0A5 5 0 015 8a1 1 0 00-2 0 7.001 7.001 0 006 6.93V17H6a1 1 0 100 2h8a1 1 0 100-2h-3v-2.07z"
-                    clip-rule="evenodd"></path>
-                </svg>
-              </button>
-            </div>
-
-            <button type="submit"
-              class="absolute top-0 left-0 p-2.5  text-sm font-medium text-white bg-blue-700 rounded-l-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"><svg
-                class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-        <div class="bg-blue-500">
-          @if ($users->count() > 0 )
-          @foreach ($users as $user)
-              {{$user->name}}
-          @endforeach
-             
-          @else
-              {{__('there are no users')}}
-          @endif
-        </div>
-      </form>
+      <div class=" basis-1/2">
+        @livewire('searchs.search-controller')
+      </div>
+      
+     
       <div class="items-center sm:ml-2 flex justify-between ">
 
         <div class="mr-8 px-2 flex items-center relative ">
@@ -137,11 +100,12 @@
     <ul class="py-1 text-sm text-gray-700 dark:text-gray-200 w-20 space-y-4 relative"
       aria-labelledby="dropdownInformationButton">
       <li id="notification" draggable="true" ondragstart="dragstart_handler(event)"
-        class=" rounded-md ring-4 ring-offset-2 ring-gray-600 flex justify-center hover:bg-gray-100 relative  dark:hover:bg-gray-300 dark:bg-gray-800 bg-chat_ ">
+        class=" rounded-md ring-4 ring-offset-2 ring-gray-600 flex justify-center hover:bg-gray-100 relative  dark:hover:bg-gray-300 dark:bg-gray-800 bg-chat_  dark:hover:text-gray-700">
         <a href="#" class="block px-4 py-2 ">
           <span class="material-symbols-outlined dark:text-chat_ text-black">
             notifications
           </span>
+          <span>{{$user->unreadNotifications->count()}}</span>
         </a>
       </li>
       <li
