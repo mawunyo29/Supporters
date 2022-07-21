@@ -9,7 +9,7 @@
     </x-slot>
 
 
-    <div class="  " >
+    <div class="  ">
         @if (session('success'))
 
         <div class="  px-2 mx-auto mb-5 " data-modal id="modal_firstconnection" x-data="{open_modal:false}">
@@ -53,8 +53,9 @@
         @endif
         @if (session('error'))
 
-      
-        <div id="alert-2" class="flex p-4 mb-4 bg-red-100 rounded-lg dark:bg-red-200 md:w-64" role="alert"  x-data="{open_error_message:true}" x-init="{open_error_message:true}" x-show="open_error_message">
+
+        <div id="alert-2" class="flex p-4 mb-4 bg-red-100 rounded-lg dark:bg-red-200 md:w-64" role="alert"
+            x-data="{open_error_message:true}" x-init="{open_error_message:true}" x-show="open_error_message">
             <svg aria-hidden="true" class="flex-shrink-0 w-5 h-5 text-red-700 dark:text-red-800" fill="currentColor"
                 viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd"
@@ -64,9 +65,10 @@
             <span class="sr-only">Info</span>
             <div class="ml-3 text-sm font-medium text-red-700 dark:text-red-800">
                 A simple info alert with an <a href="#"
-                    class="font-semibold underline hover:text-red-800 dark:hover:text-red-900">example link</a>. {{session('error')}}
+                    class="font-semibold underline hover:text-red-800 dark:hover:text-red-900">example link</a>.
+                {{session('error')}}
             </div>
-            <button type="button"  @click="open_error_message= !open_error_message"
+            <button type="button" @click="open_error_message= !open_error_message"
                 class="ml-auto -mx-1.5 -my-1.5 bg-red-100 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-red-200 dark:text-red-600 dark:hover:bg-red-300"
                 data-dismiss-target="#alert-2" aria-label="Close">
                 <span class="sr-only">Close</span>
@@ -77,7 +79,7 @@
                 </svg>
             </button>
         </div>
- 
+
         @endif
 
 
@@ -572,10 +574,38 @@
 
     </div>
     @if ( Route::currentRouteName() == 'add_to_friends')
-    @livewire('back.friends-controller', ['user' => $user])
+    @livewire('back.friends-controller', ['user' => $user ])
+    @endif
+    @if (Route::currentRouteName() == 'notifications')
+    <div class=" w-72 bottom-0 -ml-12 min-h-full p-2 relative  bg-slate-400 rounded-lg shrink-0 shadow-sm hover:shadow-lg ">
+        <ul class="bg-white dark:bg-gray-900 relative space-y-1 rounded-md hover:bg-gray-100 cursor-pointer overflow-y-auto ">
+            @foreach ($notifications as $notification)
+                <li wire:key='{{md5($notification->id)}}' class="transform text-gray-800   origin-left  test bg-gray-300 group-hover:bg-gray-700 border-b border-b-slate-500 dark:border-b-white dark:text-white hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md text-center  ease-in-out transition duration-300">{{$notification->data['name']}} <span class="ml-1"> {{__(' vous demande en ami')}}</span>
+                    <div class=" flex items-center space-x-3 mx-1">
+                        <button class="flex items-center justify-center h-6 w-6 rounded-full bg-gray-200 hover:bg-gray-300 text-green-800 ">
+                            <span class="material-symbols-outlined text-base">
+                                person_add
+                                </span>
+                          
+                        </button>
+                        <button class="flex items-center justify-center h-6 w-6 rounded-full bg-gray-200 hover:bg-gray-300 text-red-800">
+                            <span class="material-symbols-outlined text-base">
+                                layers_clear
+                                </span>
+                        </button>
+    
+                    </div>
+                </li>
+                
+                
+              
+            @endforeach
+        </ul>
+    </div>
     @endif
 
-
+   
+   
     @push('scripts')
     <script>
         window.addEventListener('load', function () {

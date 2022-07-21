@@ -35,6 +35,7 @@ Route::middleware([
     Route::prefix('/dashboard')->group(function () {
         Route::get('/user/{id}', [FriendsController::class ,'sendRequest'])->name('add_to_friends');
         Route::get('/search/{id}', [SearchController::class ,'sendInvitation'])->name('send_request');
+        Route::get('/notify', [FriendsController::class ,'getUnReadnotifications'])->name('notifications');
     });
 });
 

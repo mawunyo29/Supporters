@@ -149,6 +149,7 @@
 
 
   </div>
+  
   @push('scripts')
   <script>
     function dragstart_handler(ev) {

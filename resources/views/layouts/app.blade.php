@@ -35,7 +35,7 @@
         <header class="bg-white shadow   dark:bg-blue-800">
             <div class="max-w-7xl mx-auto py-1 px-4 sm:px-6 lg:px-8">
                 {{ $header }}
-               
+
 
             </div>
         </header>
@@ -92,7 +92,7 @@
                                 x-state-description='Current: "bg-gray-900 text-white", Default: "text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white"'>
                                 <svg class="text-gray-800 dark:text-white mr-4 flex-shrink-0 h-6 w-6"
                                     x-state:on="Current" x-state:off="Default"
-                                    x-state-description='Current: "text-gray-800 dark:text-white", Default: "text-gray-400 group-hover:text-gray-800 dark:text-white"'
+                                    x-state-description='Current: "text-gray-800 dark:text-white", Default: "text-gray-400 group-hover:text-gray-100 dark:text-white"'
                                     x-description="Heroicon name: outline/home" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -105,36 +105,36 @@
                             <a href="#"
                                 class="text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md"
                                 x-state-description='undefined: "bg-gray-900 text-white", undefined: "text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white"'>
-                                <svg class="text-gray-400 group-hover:text-gray-800 dark:text-white mr-4 flex-shrink-0 h-6 w-6"
-                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-800 dark:text-white"'
+                                <svg class="text-gray-400 group-hover:text-gray-100 dark:text-white mr-4 flex-shrink-0 h-6 w-6"
+                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-100 dark:text-white"'
                                     x-description="Heroicon name: outline/users" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
                                     </path>
                                 </svg>
-                              Amis
+                                Amis
                             </a>
 
                             <a href="#"
                                 class="text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md"
                                 x-state-description='undefined: "bg-gray-900 text-white", undefined: "text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white"'>
-                                <svg class="text-gray-400 group-hover:text-gray-800 dark:text-white mr-4 flex-shrink-0 h-6 w-6"
-                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-800 dark:text-white"'
+                                <svg class="text-gray-400 group-hover:text-gray-100 dark:text-white mr-4 flex-shrink-0 h-6 w-6"
+                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-100 dark:text-white"'
                                     x-description="Heroicon name: outline/folder" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z">
                                     </path>
                                 </svg>
-                               Ajouter
+                                Ajouter
                             </a>
 
                             <a href="#"
                                 class="text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md"
                                 x-state-description='undefined: "bg-gray-900 text-white", undefined: "text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white"'>
-                                <svg class="text-gray-400 group-hover:text-gray-800 dark:text-white mr-4 flex-shrink-0 h-6 w-6"
-                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-800 dark:text-white"'
+                                <svg class="text-gray-400 group-hover:text-gray-100 dark:text-white mr-4 flex-shrink-0 h-6 w-6"
+                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-100 dark:text-white"'
                                     x-description="Heroicon name: outline/calendar" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -147,8 +147,8 @@
                             <a href="#"
                                 class="text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md"
                                 x-state-description='undefined: "bg-gray-900 text-white", undefined: "text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white"'>
-                                <svg class="text-gray-400 group-hover:text-gray-800 dark:text-white mr-4 flex-shrink-0 h-6 w-6"
-                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-800 dark:text-white"'
+                                <svg class="text-gray-400 group-hover:text-gray-100 dark:text-white mr-4 flex-shrink-0 h-6 w-6"
+                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-100 dark:text-white"'
                                     x-description="Heroicon name: outline/inbox" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -161,15 +161,15 @@
                             <a href="#"
                                 class="text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-base font-medium rounded-md"
                                 x-state-description='undefined: "bg-gray-900 text-white", undefined: "text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white"'>
-                                <svg class="text-gray-400 group-hover:text-gray-800 dark:text-white mr-4 flex-shrink-0 h-6 w-6"
-                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-800 dark:text-white"'
+                                <svg class="text-gray-400 group-hover:text-gray-100 dark:text-white mr-4 flex-shrink-0 h-6 w-6"
+                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-100 dark:text-white"'
                                     x-description="Heroicon name: outline/chart-bar" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
                                     </path>
                                 </svg>
-                                Reports
+                                En attente
                             </a>
                         </nav>
                     </div>
@@ -185,7 +185,7 @@
                                 <div class="ml-3">
                                     <p class="text-base font-medium text-white">Tom Cook</p>
                                     <p
-                                        class="text-sm font-medium text-gray-400 group-hover:text-gray-800 dark:text-white">
+                                        class="text-sm font-medium text-gray-400 group-hover:text-gray-100 dark:text-white">
                                         View profile
                                     </p>
                                 </div>
@@ -222,9 +222,9 @@
                                 class="bg-gray-900 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                                 x-state:on="Current" x-state:off="Default"
                                 x-state-description='Current: "bg-gray-900 text-white", Default: "text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white"'>
-                                <svg class="text-gray-800 dark:text-white mr-3 flex-shrink-0 h-6 w-6"
+                                <svg class="text-gray-100 dark:text-white mr-3 flex-shrink-0 h-6 w-6"
                                     x-state:on="Current" x-state:off="Default"
-                                    x-state-description='Current: "text-gray-800 dark:text-white", Default: "text-gray-400 group-hover:text-gray-800 dark:text-white"'
+                                    x-state-description='Current: "text-gray-800 dark:text-white", Default: "text-gray-400 group-hover:text-gray-100 dark:text-white"'
                                     x-description="Heroicon name: outline/home" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -238,8 +238,8 @@
                             <a href="#"
                                 class="text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                                 x-state-description='undefined: "bg-gray-900 text-white", undefined: "text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white"'>
-                                <svg class="text-gray-400 group-hover:text-gray-800 dark:text-white mr-3 flex-shrink-0 h-6 w-6"
-                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-800 dark:text-white"'
+                                <svg class="text-gray-400 group-hover:text-gray-100 dark:text-white mr-3 flex-shrink-0 h-6 w-6"
+                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-100 dark:text-white"'
                                     x-description="Heroicon name: outline/users" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -252,8 +252,8 @@
                             <a href="#"
                                 class="text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                                 x-state-description='undefined: "bg-gray-900 text-white", undefined: "text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white"'>
-                                <svg class="text-gray-400 group-hover:text-gray-800 dark:text-white mr-3 flex-shrink-0 h-6 w-6"
-                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-800 dark:text-white"'
+                                <svg class="text-gray-400 group-hover:text-gray-100 dark:text-white mr-3 flex-shrink-0 h-6 w-6"
+                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-100 dark:text-white"'
                                     x-description="Heroicon name: outline/folder" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -262,48 +262,80 @@
                                 </svg>
                                 <p class="left_slider_content">Ajouter</p>
                             </a>
-
                             <a href="#"
                                 class="text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                                 x-state-description='undefined: "bg-gray-900 text-white", undefined: "text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white"'>
-                                <svg class="text-gray-400 group-hover:text-gray-800 dark:text-white mr-3 flex-shrink-0 h-6 w-6"
-                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-800 dark:text-white"'
-                                    x-description="Heroicon name: outline/calendar" xmlns="http://www.w3.org/2000/svg"
+                                <svg class="text-gray-400 group-hover:text-gray-100 dark:text-white mr-3 flex-shrink-0 h-6 w-6"
+                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-100 dark:text-white"'
+                                    x-description="Heroicon name: outline/settings" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 01-2.573-1.066c-.895-1.543.826-3.31 2.37-2.37a1.724 1.724 0 012.572 1.065c.426 1.756-.941 3.31-2.37 2.37a1.724 1.724 0 01-2.572-1.065c-.895-1.543.826-3.31
+                                        2.37-2.37.996.608 2.296.072 2.572-1.065z">
+                                    </path>
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                        d="M15 12a3 3 0 11-6 0 3 3 0 016 0z">
                                     </path>
                                 </svg>
-                                <p class="left_slider_content"> En attente</p>
+                                <p class="left_slider_content">Paramètres</p>
                             </a>
-
                             <a href="#"
                                 class="text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                                 x-state-description='undefined: "bg-gray-900 text-white", undefined: "text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white"'>
-                                <svg class="text-gray-400 group-hover:text-gray-800 dark:text-white mr-3 flex-shrink-0 h-6 w-6"
-                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-800 dark:text-white"'
-                                    x-description="Heroicon name: outline/inbox" xmlns="http://www.w3.org/2000/svg"
+                                <svg class="text-gray-400 group-hover:text-gray-100 dark:text-white mr-3 flex-shrink-0 h-6 w-6"
+                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-100 dark:text-white"'
+                                    x-description="Heroicon name: outline/logout" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4">
+                                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1">
                                     </path>
                                 </svg>
-                                <p class="left_slider_content"> Blog</p>
+                                <p class="left_slider_content">Déconnexion</p>
                             </a>
+                            
+                            {{-- inbox notification --}}
+                            
+                            <a href="{{route('notifications')}}"
+                                class="text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+                                x-state-description='undefined: "bg-gray-900 text-white", undefined: "text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white"'>
+                                <svg class="text-gray-400 group-hover:text-gray-100 dark:text-white mr-3 flex-shrink-0 h-6 w-6"
+                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-100 dark:text-white"'
+                                    x-description="Heroicon name: outline/mail" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                    </path>
+                                </svg>
+                                @foreach ($user->unreadNotifications as $notification)
+                                @if ($notification->type == 'App\Notifications\FriendInviteNotification')
+                                <span
+                                    class="ml-2 mt-2 text-white fixed w-4 h-4 rounded-full bg-red-600 text-center items-center text-xs">{{$user->unreadNotifications->count()}}</span>
+                                @endif
 
+                                @endforeach
+
+                                <p
+                                    class="left_info hidden group-hover:block fixed px-2 py-2 items-center bg-gray-200 text-gray-700 ring-2 rounded-md shadow-md text-center origin-left transform  group-hover:translate-y-full duration-300 ease-in-out scale-90 ">
+                                    Vous avez des invitations en attente</p>
+                                <p class="left_slider_content">Notifications</p>
+                            </a>
+                            {{-- end inbox notification --}}
                             <a href="#"
                                 class="text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
                                 x-state-description='undefined: "bg-gray-900 text-white", undefined: "text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white"'>
-                                <svg class="text-gray-400 group-hover:text-gray-800 dark:text-white mr-3 flex-shrink-0 h-6 w-6"
-                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-800 dark:text-white"'
-                                    x-description="Heroicon name: outline/chart-bar" xmlns="http://www.w3.org/2000/svg"
+                                <svg class="text-gray-400 group-hover:text-gray-100 dark:text-white mr-3 flex-shrink-0 h-6 w-6"
+                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-100 dark:text-white"'
+                                    x-description="Heroicon name: outline/info" xmlns="http://www.w3.org/2000/svg"
                                     fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
                                     </path>
                                 </svg>
-                                <p class="left_slider_content"> Reports</p>
+                                <p class="left_slider_content">Aide</p>
                             </a>
+                            {{-- notification count --}}
+
+
+
                         </nav>
                     </div>
                     <div class="flex-shrink-0 flex bg-gray-700 dark:bg-indigo-800 p-4">
@@ -356,7 +388,7 @@
                     </div>
 
                 </main>
-               
+
 
 
             </div>

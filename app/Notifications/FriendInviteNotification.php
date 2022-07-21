@@ -68,6 +68,7 @@ class FriendInviteNotification extends Notification
         return [
             "name" => $this->user->name ,
             "user_id" => $this->user->id,
+            
         ];
     }
 }

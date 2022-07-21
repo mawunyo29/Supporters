@@ -28,6 +28,7 @@ class FriendsController extends Component
     public $message_body;
     public $is_open_send_invitation = true;
     public $user;
+    public $notifications;
 
 
     public function mount(User $user)
@@ -189,6 +190,26 @@ class FriendsController extends Component
     public function deleteMessage()
     {
         
+    }
+    /**
+     * Get Notifications
+     */
+    public function getUnReadnotifications()
+    {
+        $user = Auth::user();
+        
+        if( isset($user->unreadNotifications)){
+            $this->notifications = $user->unreadNotifications;
+            return Blade::render('dashboard', [
+                'user' => $user,
+                'notifications' => $this->notifications,
+            ]);
+            
+        }else{
+            $this->notifications = [];
+            session()->flash('error', 'No notifications');
+        }
+    
     }
     
      

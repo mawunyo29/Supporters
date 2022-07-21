@@ -40,3 +40,26 @@
   'GRAD' 0,
   'opsz' 50
 }
+.test{
+  background-origin: calc(100% - 30%) calc(100% - 100px);
+  transform-origin: top left;
+  transition: all 0.5s ease;
+
+}
+@keyframes identifier {
+  0% {
+    
+    background-color:transparent;
+    
+  }
+100% {
+    width: 100%;
+    background-color: rgb(24, 23, 27);
+   
+  }
+}
+  
+.test:hover{
+  animation: identifier 2s linear infinite;
+ 
+}
