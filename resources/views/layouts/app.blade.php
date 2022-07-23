@@ -194,7 +194,7 @@
                 </div>
             </div>
             <!-- Static sidebar for desktop -->
-            <div class="hidden md:flex md:w-56 md:flex-row md:fixed md:inset-y-0" id="sidebar">
+            <div class="hidden md:flex  md:flex-row md:fixed md:inset-y-0" id="sidebar" >
                 <!-- Sidebar component, swap this element with another sidebar if you like -->
                 <div class="z-40 flex flex-col flex-1 min-h-0 bg-gray-100 shadow-md dark:bg-blue-800 dark:text- ">
                     <div class="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto ">
@@ -301,7 +301,7 @@
                                 @endforeach
                                 <p
                                     class="fixed items-center hidden px-2 py-2 text-center text-gray-700 duration-300 ease-in-out origin-left transform scale-90 bg-gray-200 rounded-md shadow-md left_info group-hover:block ring-2 group-hover:translate-y-full ">
-                                    Vous avez des invitations en attente</p>
+                                    {{$user->unreadNotifications->count() >0? __("Vous avez ".$user->unreadNotifications->count()." invitations en attente"):"Vous n'avez pas de message" }} </p>
                                 <p class="left_slider_content">Notifications</p>
                             </a>
                             {{-- end inbox notification --}}

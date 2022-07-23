@@ -96,11 +96,11 @@ class FriendsController extends Component
     }
     public function addFriend()
     {
-       
-       
+    
        try {
-        //code...
-        if($this->user->notifications->first()->data["user_id"] == $this->auth_user->id && $this->user->notifications->first()->created_at->format("d Y") == now()->format('d Y')){
+        $allready_sent =  $this->user->unreadNotifications()->where('type', 'App\Notifications\FriendInviteNotification')->where('data->user_id', $this->auth_user->id)->first();
+       
+        if($allready_sent !=null ){
             redirect()->to('/dashboard')->with('error', 'You have already sent a request to this user');
         }else{
             $this->user->notify(new FriendInviteNotification($this->auth_user));

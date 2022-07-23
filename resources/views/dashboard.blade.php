@@ -554,7 +554,7 @@
             </div>
         </div> --}}
         <div class="z-0 block  md:flex md:flex-row">
-            <div class="w-full overflow-auto md:w-1/2 will-change-scroll">
+            <div class="w-full overflow-auto md:w-1/2 will-change-scroll bg-orange-600">
 
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, quos repellendus voluptate itaque
                 vitae quia facilis. Adipisci, esse. Architecto laudantium dolorum earum velit. Temporibus vitae nam,

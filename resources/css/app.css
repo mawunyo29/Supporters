@@ -63,6 +63,12 @@
   animation: identifier 2s linear infinite;
  
 }
+.left_slider_content{
+  display:none;
+}
+#logo_dash_l{
+  display:none;
+}
 
  
   

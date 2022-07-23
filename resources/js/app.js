@@ -63,14 +63,14 @@ window.onload = function () {
     if (e.target.id == "reduce_btn") {
       retract = document.getElementById("reduce_btn");
       slidebar = document.getElementById("sidebar");
-     
+
       if (retract.hasAttribute("retract")) {
-       
+
         slidebar.style.width = "14rem";
         retract.removeAttribute("retract");
         document.getElementById("logo_dash_l").style.display = "block";
-        retract.style.transform = "rotate(180deg)"? "rotate(0deg)": "rotate(-180deg)";
-       
+
+        retract.style.transform = "rotate(180deg)";
         retract.style.transition = "transform 0.5s";
         retract.style.transitionTimingFunction = "ease-in-out";
         document.querySelectorAll(".left_slider_content").forEach(function (element) {
@@ -83,8 +83,8 @@ window.onload = function () {
         slidebar.classList.remove("w-56");
         slidebar.style.width = "4rem";
         slidebar.classList.add("transition-all", 'duration-500');
+        retract.style.transform = "rotate(180deg)" ? "rotate(0deg)" : "rotate(-180deg)";
 
-        retract.style.transform = "rotate(180deg)";
         retract.setAttribute("retract", "sidebar_retracted");
         document.getElementById("logo_dash_l").style.display = "none";
         document.querySelectorAll(".left_slider_content").forEach(function (element) {
@@ -92,7 +92,7 @@ window.onload = function () {
         });
 
       }
-      
+
       slidebar.classList.add("transition-all", 'duration-500');
       retract.style.transition = "transform 0.5s";
 
