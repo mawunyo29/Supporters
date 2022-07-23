@@ -66,7 +66,7 @@ window.onload = function () {
      
       if (retract.hasAttribute("retract")) {
        
-        slidebar.style.width = "16rem";
+        slidebar.style.width = "14rem";
         retract.removeAttribute("retract");
         document.getElementById("logo_dash_l").style.display = "block";
         retract.style.transform = "rotate(180deg)"? "rotate(0deg)": "rotate(-180deg)";
@@ -80,7 +80,7 @@ window.onload = function () {
         console.log(e.target.id);
 
       } else {
-        slidebar.classList.remove("w-64");
+        slidebar.classList.remove("w-56");
         slidebar.style.width = "4rem";
         slidebar.classList.add("transition-all", 'duration-500');
 

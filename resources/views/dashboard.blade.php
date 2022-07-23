@@ -3,20 +3,20 @@
         <div class="">
             <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg"
                 alt="avatar image"
-                class="cursor-pointer inline-flex items-center justify-center w-12 h-12 mr-2 rounded-full text-white transition-all duration-200 ease-in-out text-size-sm rounded-circle" />
+                class="inline-flex items-center justify-center w-12 h-12 mr-2 text-white transition-all duration-200 ease-in-out rounded-full cursor-pointer text-size-sm rounded-circle" />
         </div>
 
     </x-slot>
 
 
-    <div class="  ">
+    <div class="">
         @if (session('success'))
 
-        <div class="  px-2 mx-auto mb-5 " data-modal id="modal_firstconnection" x-data="{open_modal:false}">
+        <div class="px-2 mx-auto mb-5 " data-modal id="modal_firstconnection" x-data="{open_modal:false}">
 
-            <button @click="open_modal =true" id="btn_open" class=" hidden">message</button>
+            <button @click="open_modal =true" id="btn_open" class="hidden ">message</button>
             <div id=show
-                class=" sm:w-1/3 w-full rounded-lg shadow-md sm:ml-8  divide-x-2 absolute  overflow-hidden sm:px-2 ring-2 p-2 bg-white flex dark:bg-gray-800 z-20 "
+                class="absolute z-20 flex w-full p-2 overflow-hidden bg-white divide-x-2 rounded-lg shadow-md sm:w-1/3 sm:ml-8 sm:px-2 ring-2 dark:bg-gray-800"
                 x-show="open_modal" x-on:close.stop="modal = false" x-on:keydown.escape.window="modal = false"
                 x-transition:enter="transition ease-out duration-500 ease-out origin-left "
                 x-transition:enter-start="opacity-0 transform scale-95 -translate-x-full"
@@ -27,7 +27,7 @@
                 role="alert">
 
                 <div>
-                    <h3 class="font-semibold text-xl text-gray-800 leading-tight dark:text-white">
+                    <h3 class="text-xl font-semibold leading-tight text-gray-800 dark:text-white">
                         {{ __(session('success')) }}
                     </h3>
                     <p class="mt-2 text-gray-600 dark:text-white">
@@ -37,9 +37,9 @@
                         {{ session('success') }}
                     </p>
                 </div>
-                <div class="flex justify-items-center justify-center relative cursor-pointer " id="close_modal"
+                <div class="relative flex justify-center cursor-pointer justify-items-center " id="close_modal"
                     @click="open_modal=false">
-                    <span class="material-symbols-outlined justify-end py-8 ">
+                    <span class="justify-end py-8 material-symbols-outlined ">
                         close
                     </span>
                 </div>
@@ -84,11 +84,11 @@
 
 
         <!-- component -->
-        {{-- <div class="flex flex-row h-screen antialiased text-gray-800  m-0 overflow-hidden ">
-            <div class="flex flex-row w-96 flex-shrink-0 bg-gray-100 resize-x">
-                <div class="flex flex-col items-center py-4 flex-shrink-0 w-20 dark:bg-indigo-700 rounded-3xl">
+        {{-- <div class="flex flex-row h-screen m-0 overflow-hidden antialiased text-gray-800 ">
+            <div class="flex flex-row flex-shrink-0 bg-gray-100 resize-x w-96">
+                <div class="flex flex-col items-center flex-shrink-0 w-20 py-4 dark:bg-indigo-700 rounded-3xl">
                     <a href="#"
-                        class="flex items-center justify-center h-12 w-12 bg-indigo-100 text-indigo-800 rounded-full">
+                        class="flex items-center justify-center w-12 h-12 text-indigo-800 bg-indigo-100 rounded-full">
                         <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -96,11 +96,11 @@
                             </path>
                         </svg>
                     </a>
-                    <ul class="flex flex-col space-y-2 mt-12">
+                    <ul class="flex flex-col mt-12 space-y-2">
                         <li>
                             <a href="#" class="flex items-center">
                                 <span
-                                    class="flex items-center justify-center text-indigo-100 hover:bg-indigo-700 h-12 w-12 rounded-2xl">
+                                    class="flex items-center justify-center w-12 h-12 text-indigo-100 hover:bg-indigo-700 rounded-2xl">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -113,7 +113,7 @@
                         <li>
                             <a href="#" class="flex items-center">
                                 <span
-                                    class="flex items-center justify-center text-indigo-100 hover:bg-indigo-700 h-12 w-12 rounded-2xl">
+                                    class="flex items-center justify-center w-12 h-12 text-indigo-100 hover:bg-indigo-700 rounded-2xl">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -126,7 +126,7 @@
                         <li>
                             <a href="#" class="flex items-center">
                                 <span
-                                    class="flex items-center justify-center text-indigo-100 hover:bg-indigo-700 h-12 w-12 rounded-2xl">
+                                    class="flex items-center justify-center w-12 h-12 text-indigo-100 hover:bg-indigo-700 rounded-2xl">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -139,7 +139,7 @@
                         <li>
                             <a href="#" class="flex items-center">
                                 <span
-                                    class="flex items-center justify-center text-indigo-100 hover:bg-indigo-700 h-12 w-12 rounded-2xl">
+                                    class="flex items-center justify-center w-12 h-12 text-indigo-100 hover:bg-indigo-700 rounded-2xl">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -153,7 +153,7 @@
                         </li>
                     </ul>
                     <button
-                        class="mt-auto flex items-center justify-center hover:text-indigo-100 text-indigo-500 h-10 w-10">
+                        class="flex items-center justify-center w-10 h-10 mt-auto text-indigo-500 hover:text-indigo-100">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -162,17 +162,17 @@
                         </svg>
                     </button>
                 </div>
-                <div class="flex flex-col w-full h-full pl-4 pr-4 py-4 ">
+                <div class="flex flex-col w-full h-full py-4 pl-4 pr-4 ">
                     <div class="flex flex-row items-center">
                         <div class="flex flex-row items-center">
                             <div class="text-xl font-semibold">Messages</div>
                             <div
-                                class="flex items-center justify-center ml-2 text-xs h-5 w-5 text-white bg-red-500 rounded-full font-medium">
+                                class="flex items-center justify-center w-5 h-5 ml-2 text-xs font-medium text-white bg-red-500 rounded-full">
                                 5</div>
                         </div>
                         <div class="ml-auto">
                             <button
-                                class="flex items-center justify-center h-7 w-7 bg-gray-200 text-gray-500 rounded-full">
+                                class="flex items-center justify-center text-gray-500 bg-gray-200 rounded-full h-7 w-7">
                                 <svg class="w-4 h-4 stroke-current" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -185,141 +185,141 @@
                         <ul class="flex flex-row items-center justify-between">
                             <li>
                                 <a href="#"
-                                    class="flex items-center pb-3 text-xs font-semibold relative text-indigo-800">
+                                    class="relative flex items-center pb-3 text-xs font-semibold text-indigo-800">
                                     <span>All Conversations</span>
-                                    <span class="absolute left-0 bottom-0 h-1 w-6 bg-indigo-800 rounded-full"></span>
+                                    <span class="absolute bottom-0 left-0 w-6 h-1 bg-indigo-800 rounded-full"></span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center pb-3 text-xs text-gray-700 font-semibold">
+                                <a href="#" class="flex items-center pb-3 text-xs font-semibold text-gray-700">
                                     <span>Archived</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="#" class="flex items-center pb-3 text-xs text-gray-700 font-semibold">
+                                <a href="#" class="flex items-center pb-3 text-xs font-semibold text-gray-700">
                                     <span>Starred</span>
                                 </a>
                             </li>
                         </ul>
                     </div>
                     <div class="mt-5">
-                        <div class="text-xs text-gray-400 font-semibold uppercase">Team</div>
+                        <div class="text-xs font-semibold text-gray-400 uppercase">Team</div>
                     </div>
                     <div class="mt-2">
                         <div class="flex flex-col -mx-4">
                             <div class="relative flex flex-row items-center p-4">
-                                <div class="absolute text-xs text-gray-500 right-0 top-0 mr-4 mt-3">5 min</div>
+                                <div class="absolute top-0 right-0 mt-3 mr-4 text-xs text-gray-500">5 min</div>
                                 <div
-                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-pink-500 text-pink-300 font-bold flex-shrink-0">
+                                    class="flex items-center justify-center flex-shrink-0 w-10 h-10 font-bold text-pink-300 bg-pink-500 rounded-full">
                                     T
                                 </div>
                                 <div class="flex flex-col flex-grow ml-3">
                                     <div class="text-sm font-medium">Cuberto</div>
-                                    <div class="text-xs truncate w-40">Lorem ipsum dolor sit amet, consectetur
+                                    <div class="w-40 text-xs truncate">Lorem ipsum dolor sit amet, consectetur
                                         adipisicing elit. Debitis, doloribus?</div>
                                 </div>
-                                <div class="flex-shrink-0 ml-2 self-end mb-1">
+                                <div class="self-end flex-shrink-0 mb-1 ml-2">
                                     <span
-                                        class="flex items-center justify-center h-5 w-5 bg-red-500 text-white text-xs rounded-full">5</span>
+                                        class="flex items-center justify-center w-5 h-5 text-xs text-white bg-red-500 rounded-full">5</span>
                                 </div>
                             </div>
                             <div
-                                class="flex flex-row items-center p-4 bg-gradient-to-r from-red-100 to-transparent border-l-2 border-red-500">
+                                class="flex flex-row items-center p-4 border-l-2 border-red-500 bg-gradient-to-r from-red-100 to-transparent">
                                 <div
-                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-pink-500 text-pink-300 font-bold flex-shrink-0">
+                                    class="flex items-center justify-center flex-shrink-0 w-10 h-10 font-bold text-pink-300 bg-pink-500 rounded-full">
                                     T
                                 </div>
                                 <div class="flex flex-col flex-grow ml-3">
                                     <div class="flex items-center">
                                         <div class="text-sm font-medium">UI Art Design</div>
-                                        <div class="h-2 w-2 rounded-full bg-green-500 ml-2"></div>
+                                        <div class="w-2 h-2 ml-2 bg-green-500 rounded-full"></div>
                                     </div>
-                                    <div class="text-xs truncate w-40">Lorem ipsum dolor sit amet, consectetur
+                                    <div class="w-40 text-xs truncate">Lorem ipsum dolor sit amet, consectetur
                                         adipisicing elit. Debitis, doloribus?</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="mt-5">
-                        <div class="text-xs text-gray-400 font-semibold uppercase">Personal</div>
+                        <div class="text-xs font-semibold text-gray-400 uppercase">Personal</div>
                     </div>
-                    <div class="h-full overflow-hidden relative pt-2">
-                        <div class="flex flex-col divide-y h-full overflow-y-auto -mx-4">
-                            <div class="flex flex-row items-center p-4 relative">
-                                <div class="absolute text-xs text-gray-500 right-0 top-0 mr-4 mt-3">2 hours ago</div>
+                    <div class="relative h-full pt-2 overflow-hidden">
+                        <div class="flex flex-col h-full -mx-4 overflow-y-auto divide-y">
+                            <div class="relative flex flex-row items-center p-4">
+                                <div class="absolute top-0 right-0 mt-3 mr-4 text-xs text-gray-500">2 hours ago</div>
                                 <div
-                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-pink-500 text-pink-300 font-bold flex-shrink-0">
+                                    class="flex items-center justify-center flex-shrink-0 w-10 h-10 font-bold text-pink-300 bg-pink-500 rounded-full">
                                     T
                                 </div>
                                 <div class="flex flex-col flex-grow ml-3">
                                     <div class="text-sm font-medium">Flo Steinle</div>
-                                    <div class="text-xs truncate w-40">Good after noon! how can i help you?</div>
+                                    <div class="w-40 text-xs truncate">Good after noon! how can i help you?</div>
                                 </div>
-                                <div class="flex-shrink-0 ml-2 self-end mb-1">
+                                <div class="self-end flex-shrink-0 mb-1 ml-2">
                                     <span
-                                        class="flex items-center justify-center h-5 w-5 bg-red-500 text-white text-xs rounded-full">3</span>
+                                        class="flex items-center justify-center w-5 h-5 text-xs text-white bg-red-500 rounded-full">3</span>
                                 </div>
                             </div>
                             <div class="flex flex-row items-center p-4">
                                 <div
-                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-pink-500 text-pink-300 font-bold flex-shrink-0">
+                                    class="flex items-center justify-center flex-shrink-0 w-10 h-10 font-bold text-pink-300 bg-pink-500 rounded-full">
                                     T
                                 </div>
                                 <div class="flex flex-col flex-grow ml-3">
                                     <div class="flex items-center">
                                         <div class="text-sm font-medium">Sarah D</div>
-                                        <div class="h-2 w-2 rounded-full bg-green-500 ml-2"></div>
+                                        <div class="w-2 h-2 ml-2 bg-green-500 rounded-full"></div>
                                     </div>
-                                    <div class="text-xs truncate w-40">Lorem ipsum dolor sit amet, consectetur
+                                    <div class="w-40 text-xs truncate">Lorem ipsum dolor sit amet, consectetur
                                         adipisicing elit. Debitis, doloribus?</div>
                                 </div>
                             </div>
                             <div class="flex flex-row items-center p-4">
                                 <div
-                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-pink-500 text-pink-300 font-bold flex-shrink-0">
+                                    class="flex items-center justify-center flex-shrink-0 w-10 h-10 font-bold text-pink-300 bg-pink-500 rounded-full">
                                     T
                                 </div>
                                 <div class="flex flex-col flex-grow ml-3">
                                     <div class="flex items-center">
                                         <div class="text-sm font-medium">Sarah D</div>
-                                        <div class="h-2 w-2 rounded-full bg-green-500 ml-2"></div>
+                                        <div class="w-2 h-2 ml-2 bg-green-500 rounded-full"></div>
                                     </div>
-                                    <div class="text-xs truncate w-40">Lorem ipsum dolor sit amet, consectetur
+                                    <div class="w-40 text-xs truncate">Lorem ipsum dolor sit amet, consectetur
                                         adipisicing elit. Debitis, doloribus?</div>
                                 </div>
                             </div>
                             <div class="flex flex-row items-center p-4">
                                 <div
-                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-pink-500 text-pink-300 font-bold flex-shrink-0">
+                                    class="flex items-center justify-center flex-shrink-0 w-10 h-10 font-bold text-pink-300 bg-pink-500 rounded-full">
                                     T
                                 </div>
                                 <div class="flex flex-col flex-grow ml-3">
                                     <div class="flex items-center">
                                         <div class="text-sm font-medium">Sarah D</div>
-                                        <div class="h-2 w-2 rounded-full bg-green-500 ml-2"></div>
+                                        <div class="w-2 h-2 ml-2 bg-green-500 rounded-full"></div>
                                     </div>
-                                    <div class="text-xs truncate w-40">Lorem ipsum dolor sit amet, consectetur
+                                    <div class="w-40 text-xs truncate">Lorem ipsum dolor sit amet, consectetur
                                         adipisicing elit. Debitis, doloribus?</div>
                                 </div>
                             </div>
                             <div class="flex flex-row items-center p-4">
                                 <div
-                                    class="flex items-center justify-center h-10 w-10 rounded-full bg-pink-500 text-pink-300 font-bold flex-shrink-0">
+                                    class="flex items-center justify-center flex-shrink-0 w-10 h-10 font-bold text-pink-300 bg-pink-500 rounded-full">
                                     T
                                 </div>
                                 <div class="flex flex-col flex-grow ml-3">
                                     <div class="flex items-center">
                                         <div class="text-sm font-medium">Sarah D</div>
-                                        <div class="h-2 w-2 rounded-full bg-green-500 ml-2"></div>
+                                        <div class="w-2 h-2 ml-2 bg-green-500 rounded-full"></div>
                                     </div>
-                                    <div class="text-xs truncate w-40">Lorem ipsum dolor sit amet, consectetur
+                                    <div class="w-40 text-xs truncate">Lorem ipsum dolor sit amet, consectetur
                                         adipisicing elit. Debitis, doloribus?</div>
                                 </div>
                             </div>
                         </div>
                         <div class="absolute bottom-0 right-0 mr-2">
                             <button
-                                class="flex items-center justify-center shadow-sm h-10 w-10 bg-red-500 text-white rounded-full">
+                                class="flex items-center justify-center w-10 h-10 text-white bg-red-500 rounded-full shadow-sm">
                                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -330,20 +330,20 @@
                     </div>
                 </div>
             </div>
-            <div class="flex flex-col h-full w-full bg-white px-4 py-6">
-                <div class="flex flex-row items-center py-4 px-6 rounded-2xl shadow">
-                    <div class="flex items-center justify-center h-10 w-10 rounded-full bg-pink-500 text-pink-100">
+            <div class="flex flex-col w-full h-full px-4 py-6 bg-white">
+                <div class="flex flex-row items-center px-6 py-4 shadow rounded-2xl">
+                    <div class="flex items-center justify-center w-10 h-10 text-pink-100 bg-pink-500 rounded-full">
                         T
                     </div>
                     <div class="flex flex-col ml-3">
-                        <div class="font-semibold text-sm">UI Art Design</div>
+                        <div class="text-sm font-semibold">UI Art Design</div>
                         <div class="text-xs text-gray-500">Active</div>
                     </div>
                     <div class="ml-auto">
                         <ul class="flex flex-row items-center space-x-2">
                             <li>
                                 <a href="#"
-                                    class="flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-400 h-10 w-10 rounded-full">
+                                    class="flex items-center justify-center w-10 h-10 text-gray-400 bg-gray-100 rounded-full hover:bg-gray-200">
                                     <span>
                                         <svg class="w-5 h-5" fill="currentColor" stroke="none" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -356,7 +356,7 @@
                             </li>
                             <li>
                                 <a href="#"
-                                    class="flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-400 h-10 w-10 rounded-full">
+                                    class="flex items-center justify-center w-10 h-10 text-gray-400 bg-gray-100 rounded-full hover:bg-gray-200">
                                     <span>
                                         <svg class="w-5 h-5" fill="currentColor" stroke="none" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -369,7 +369,7 @@
                             </li>
                             <li>
                                 <a href="#"
-                                    class="flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-400 h-10 w-10 rounded-full">
+                                    class="flex items-center justify-center w-10 h-10 text-gray-400 bg-gray-100 rounded-full hover:bg-gray-200">
                                     <span>
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                             xmlns="http://www.w3.org/2000/svg">
@@ -383,16 +383,16 @@
                         </ul>
                     </div>
                 </div>
-                <div class="h-full overflow-hidden py-4">
+                <div class="h-full py-4 overflow-hidden">
                     <div class="h-full overflow-y-auto">
                         <div class="grid grid-cols-12 gap-y-2">
                             <div class="col-start-1 col-end-8 p-3 rounded-lg">
                                 <div class="flex flex-row items-center">
                                     <div
-                                        class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
+                                        class="flex items-center justify-center flex-shrink-0 w-10 h-10 bg-indigo-500 rounded-full">
                                         A
                                     </div>
-                                    <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+                                    <div class="relative px-4 py-2 ml-3 text-sm bg-white shadow rounded-xl">
                                         <div>Hey How are you today?</div>
                                     </div>
                                 </div>
@@ -400,10 +400,10 @@
                             <div class="col-start-1 col-end-8 p-3 rounded-lg">
                                 <div class="flex flex-row items-center">
                                     <div
-                                        class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
+                                        class="flex items-center justify-center flex-shrink-0 w-10 h-10 bg-indigo-500 rounded-full">
                                         A
                                     </div>
-                                    <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+                                    <div class="relative px-4 py-2 ml-3 text-sm bg-white shadow rounded-xl">
                                         <div>
                                             Lorem ipsum dolor sit amet, consectetur adipisicing
                                             elit. Vel ipsa commodi illum saepe numquam maxime
@@ -413,23 +413,23 @@
                                 </div>
                             </div>
                             <div class="col-start-6 col-end-13 p-3 rounded-lg">
-                                <div class="flex items-center justify-start flex-row-reverse">
+                                <div class="flex flex-row-reverse items-center justify-start">
                                     <div
-                                        class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
+                                        class="flex items-center justify-center flex-shrink-0 w-10 h-10 bg-indigo-500 rounded-full">
                                         A
                                     </div>
-                                    <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
+                                    <div class="relative px-4 py-2 mr-3 text-sm bg-indigo-100 shadow rounded-xl">
                                         <div>I'm ok what about you?</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-start-6 col-end-13 p-3 rounded-lg">
-                                <div class="flex items-center justify-start flex-row-reverse">
+                                <div class="flex flex-row-reverse items-center justify-start">
                                     <div
-                                        class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
+                                        class="flex items-center justify-center flex-shrink-0 w-10 h-10 bg-indigo-500 rounded-full">
                                         A
                                     </div>
-                                    <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
+                                    <div class="relative px-4 py-2 mr-3 text-sm bg-indigo-100 shadow rounded-xl">
                                         <div>
                                             Lorem ipsum dolor sit, amet consectetur adipisicing. ?
                                         </div>
@@ -439,25 +439,25 @@
                             <div class="col-start-1 col-end-8 p-3 rounded-lg">
                                 <div class="flex flex-row items-center">
                                     <div
-                                        class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
+                                        class="flex items-center justify-center flex-shrink-0 w-10 h-10 bg-indigo-500 rounded-full">
                                         A
                                     </div>
-                                    <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+                                    <div class="relative px-4 py-2 ml-3 text-sm bg-white shadow rounded-xl">
                                         <div>Lorem ipsum dolor sit amet !</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-start-6 col-end-13 p-3 rounded-lg">
-                                <div class="flex items-center justify-start flex-row-reverse">
+                                <div class="flex flex-row-reverse items-center justify-start">
                                     <div
-                                        class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
+                                        class="flex items-center justify-center flex-shrink-0 w-10 h-10 bg-indigo-500 rounded-full">
                                         A
                                     </div>
-                                    <div class="relative mr-3 text-sm bg-indigo-100 py-2 px-4 shadow rounded-xl">
+                                    <div class="relative px-4 py-2 mr-3 text-sm bg-indigo-100 shadow rounded-xl">
                                         <div>
                                             Lorem ipsum dolor sit, amet consectetur adipisicing. ?
                                         </div>
-                                        <div class="absolute text-xs bottom-0 right-0 -mb-5 mr-2 text-gray-500">
+                                        <div class="absolute bottom-0 right-0 mr-2 -mb-5 text-xs text-gray-500">
                                             Seen
                                         </div>
                                     </div>
@@ -466,10 +466,10 @@
                             <div class="col-start-1 col-end-8 p-3 rounded-lg">
                                 <div class="flex flex-row items-center">
                                     <div
-                                        class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
+                                        class="flex items-center justify-center flex-shrink-0 w-10 h-10 bg-indigo-500 rounded-full">
                                         A
                                     </div>
-                                    <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+                                    <div class="relative px-4 py-2 ml-3 text-sm bg-white shadow rounded-xl">
                                         <div>
                                             Lorem ipsum dolor sit amet consectetur adipisicing elit.
                                             Perspiciatis, in.
@@ -480,13 +480,13 @@
                             <div class="col-start-1 col-end-8 p-3 rounded-lg">
                                 <div class="flex flex-row items-center">
                                     <div
-                                        class="flex items-center justify-center h-10 w-10 rounded-full bg-indigo-500 flex-shrink-0">
+                                        class="flex items-center justify-center flex-shrink-0 w-10 h-10 bg-indigo-500 rounded-full">
                                         A
                                     </div>
-                                    <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl">
+                                    <div class="relative px-4 py-2 ml-3 text-sm bg-white shadow rounded-xl">
                                         <div class="flex flex-row items-center">
                                             <button
-                                                class="flex items-center justify-center bg-indigo-600 hover:bg-indigo-800 rounded-full h-8 w-10">
+                                                class="flex items-center justify-center w-10 h-8 bg-indigo-600 rounded-full hover:bg-indigo-800">
                                                 <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                                     <path stroke-linecap="round" stroke-linejoin="round"
@@ -507,8 +507,8 @@
                     </div>
                 </div>
                 <div class="flex flex-row items-center">
-                    <div class="flex flex-row items-center w-full border rounded-3xl h-12 px-2">
-                        <button class="flex items-center justify-center h-10 w-10 text-gray-400 ml-1">
+                    <div class="flex flex-row items-center w-full h-12 px-2 border rounded-3xl">
+                        <button class="flex items-center justify-center w-10 h-10 ml-1 text-gray-400">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -518,11 +518,11 @@
                         </button>
                         <div class="w-full">
                             <input type="text"
-                                class="border border-transparent w-full focus:outline-none text-sm h-10 flex items-center"
+                                class="flex items-center w-full h-10 text-sm border border-transparent focus:outline-none"
                                 placeholder="Type your message....">
                         </div>
                         <div class="flex flex-row">
-                            <button class="flex items-center justify-center h-10 w-8 text-gray-400">
+                            <button class="flex items-center justify-center w-8 h-10 text-gray-400">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -530,7 +530,7 @@
                                     </path>
                                 </svg>
                             </button>
-                            <button class="flex items-center justify-center h-10 w-8 text-gray-400 ml-1 mr-2">
+                            <button class="flex items-center justify-center w-8 h-10 ml-1 mr-2 text-gray-400">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -542,8 +542,8 @@
                     </div>
                     <div class="ml-6">
                         <button
-                            class="flex items-center justify-center h-10 w-10 rounded-full bg-gray-200 hover:bg-gray-300 text-indigo-800 text-white">
-                            <svg class="w-5 h-5 transform rotate-90 -mr-px" fill="none" stroke="currentColor"
+                            class="flex items-center justify-center w-10 h-10 text-white text-indigo-800 bg-gray-200 rounded-full hover:bg-gray-300">
+                            <svg class="w-5 h-5 -mr-px transform rotate-90" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
@@ -553,8 +553,8 @@
                 </div>
             </div>
         </div> --}}
-        <div class="md:flex md:flex-row relative block z-0">
-            <div class="  md:w-1/2  md:absolute overflow-auto will-change-scroll w-full">
+        <div class="z-0 block  md:flex md:flex-row">
+            <div class="w-full overflow-auto md:w-1/2 will-change-scroll">
 
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, quos repellendus voluptate itaque
                 vitae quia facilis. Adipisci, esse. Architecto laudantium dolorum earum velit. Temporibus vitae nam,
@@ -562,7 +562,7 @@
 
 
             </div>
-            <div class=" md:w-1/2 md:absolute right-0 w-full">
+            <div class="right-0 w-full md:w-1/2 ">
 
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, quos repellendus voluptate itaque
                 vitae quia facilis. Adipisci, esse. Architecto laudantium dolorum earum velit. Temporibus vitae nam,
@@ -576,20 +576,20 @@
     @if ( Route::currentRouteName() == 'add_to_friends')
     @livewire('back.friends-controller', ['user' => $user ])
     @endif
-    @if (Route::currentRouteName() == 'notifications')
-    <div class=" w-72 bottom-0 -ml-12 min-h-full p-2 relative  bg-slate-400 rounded-lg shrink-0 shadow-sm hover:shadow-lg ">
-        <ul class="bg-white dark:bg-gray-900 relative space-y-1 rounded-md hover:bg-gray-100 cursor-pointer overflow-y-auto ">
+    {{-- @if (Route::currentRouteName() == 'notifications')
+    <div class="relative bottom-0 min-h-full p-2 -ml-12 rounded-lg shadow-sm w-72 bg-slate-400 shrink-0 hover:shadow-lg">
+        <ul class="relative space-y-1 overflow-y-auto bg-white rounded-md cursor-pointer dark:bg-gray-900 hover:bg-gray-100 ">
             @foreach ($notifications as $notification)
-                <li wire:key='{{md5($notification->id)}}' class="transform text-gray-800   origin-left  test bg-gray-300 group-hover:bg-gray-700 border-b border-b-slate-500 dark:border-b-white dark:text-white hover:text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md text-center  ease-in-out transition duration-300">{{$notification->data['name']}} <span class="ml-1"> {{__(' vous demande en ami')}}</span>
-                    <div class=" flex items-center space-x-3 mx-1">
-                        <button class="flex items-center justify-center h-6 w-6 rounded-full bg-gray-200 hover:bg-gray-300 text-green-800 ">
-                            <span class="material-symbols-outlined text-base">
+                <li wire:key='{{md5($notification->id)}}' class="flex items-center px-2 py-2 text-sm font-medium text-center text-gray-800 transition duration-300 ease-in-out origin-left transform bg-gray-300 border-b rounded-md test group-hover:bg-gray-700 border-b-slate-500 dark:border-b-white dark:text-white hover:text-white group">{{$notification->data['name']}} <span class="ml-1"> {{__(' vous demande en ami')}}</span>
+                    <div class="flex items-center mx-1 space-x-3 ">
+                        <button class="flex items-center justify-center w-6 h-6 text-green-800 bg-gray-200 rounded-full hover:bg-gray-300 ">
+                            <span class="text-base material-symbols-outlined">
                                 person_add
                                 </span>
                           
                         </button>
-                        <button class="flex items-center justify-center h-6 w-6 rounded-full bg-gray-200 hover:bg-gray-300 text-red-800">
-                            <span class="material-symbols-outlined text-base">
+                        <button class="flex items-center justify-center w-6 h-6 text-red-800 bg-gray-200 rounded-full hover:bg-gray-300">
+                            <span class="text-base material-symbols-outlined">
                                 layers_clear
                                 </span>
                         </button>
@@ -602,7 +602,7 @@
             @endforeach
         </ul>
     </div>
-    @endif
+    @endif --}}
 
    
    
