@@ -17,11 +17,12 @@ class NotificationController extends Component
     public $accept_request = false;
     public $user_to_add;
     public $notification_id;
-
-    public function mount()
+    public $showNewUserNotification=false;
+    public function mount($user)
     {
-        $this->user = Auth::user();
+        $this->user = $user;
     }
+    protected $listeners = ["sendNotification" => '$refresh'];
 
     /**
      * accept friend request
@@ -29,15 +30,28 @@ class NotificationController extends Component
     public function updatedAcceptRequest()
     {
 
-        Friend::updateOrCreate([
-            'user_id' =>$this->user_to_add->id,
-            'name' => $this->user_to_add->name,
-            
-        ]);
-        $this->user->notifications()->where('id', $this->notification_id)->first()->markAsRead();
+        $data = [
+            'user_id' => $this->user->id,
+            'friend_id' =>$this->user_to_add->id, 
+            'name' => $this->user_to_add->name,   
+        ];
+        
+      $friend =  Friend::updateOrCreate($data);
+     if(!isset($friend)){
+        return redirect()->route('dashboard')->with('error', 'Sorry, you can not add yourself as a friend');
+     }else{
+
+        $this->user->friends()->attach($friend->id);
+        $this->user->unReadNotifications->where('id', $this->notification_id)->first()->markAsRead();
         $this->accept = false;
         return redirect()->route('dashboard')->with('success', 'Friend request accepted');
+     }
+      
     }
+
+    /**
+     * decline friend request
+     */
     public function invitationAction($notification)
     {
         $user_id = $notification['data']['user_id'];
@@ -59,9 +73,10 @@ class NotificationController extends Component
     public function updatedDeclineRequest()
     {
 
-        $this->user->notifications()->where('id', $this->notification_id)->first()->markAsRead();
-        session()->flash('success', 'Notification has been deleted successfully');
+        $this->user->unReadNotifications->where('id', $this->notification_id)->first()->markAsRead();
+        $this->decline_request = false;
         $this->accept = false;
+        return redirect()->route('dashboard')->with('success', 'Friend request declined');
     }
 
 

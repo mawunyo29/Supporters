@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Back;
 
+use App\Events\SendInvitationEvent;
+use App\Events\SendMessageEvent;
 use App\Models\User;
 use App\Notifications\FriendInviteNotification;
 use Illuminate\Queue\Middleware\ThrottlesExceptions;
@@ -29,27 +31,44 @@ class FriendsController extends Component
     public $is_open_send_invitation = true;
     public $user;
     public $notifications;
+    public $showNewUserNotification = false;
 
 
     public function mount(User $user)
     {
         $this->auth_user = Auth::user();
-       $this->user = $user;
-       
-       
+        $this->user = $user;
+        $this->message = $this->auth_user->name.' sent you a friend request';
     }
-    protected $listeners = ["sendRequest"
+
+    protected $listeners = [
+        "sendRequest"
     ];
     /**
      * get alls friends when the user is connected
      * 
      */
-     
+    public function listeners()
+    {
+        return [
+            "sendNotification:".$this->user->id => 'notifyNewUser',
+            // // Or:
+            // "echo-presence:orders.{$this->orderId},OrderShipped" => 'notifyNewOrder',
+        ];
+    }
+
+    public function notifyNewUser()
+    {
+        
+       dd('notifyNewUser');
+        $this->showNewUserNotification = true;
+        $this->dispatchBrowserEvent('sendNotification');
+
+      
+    }
     public function getFriends()
     {
         $this->friends = $this->auth_user->friends();
-        
-       
     }
     /**
      * get  friend by name
@@ -63,10 +82,9 @@ class FriendsController extends Component
      * get  friend by Id
      * 
      */
-    public function getFriendById( $id)
+    public function getFriendById($id)
     {
         $this->friend = $this->auth_user->friends()->where('id', $id)->first();
-       
     }
 
     /**
@@ -76,13 +94,12 @@ class FriendsController extends Component
     public function sendRequest($id)
     {
         $this->user_to_add = User::findOrfail($id);
-       
-       
+
+
         return Blade::render('dashboard', [
             'user' => $this->user_to_add,
             'auth_user' => $this->auth_user,
         ]);
-
     }
     /**
      * open the send invitation modal
@@ -90,44 +107,49 @@ class FriendsController extends Component
      */
     public function updatedIsOpenSendInvitation()
     {
-        $this->is_open_send_invitation = !$this->is_open_send_invitation;
        
-        redirect()->back();
+       $this->user->broadcastChannel();
     }
-    public function addFriend()
+    public function closeModal()
     {
-    
-       try {
-        $allready_sent =  $this->user->unreadNotifications()->where('type', 'App\Notifications\FriendInviteNotification')->where('data->user_id', $this->auth_user->id)->first();
-       
-        if($allready_sent !=null ){
-            redirect()->to('/dashboard')->with('error', 'You have already sent a request to this user');
-        }else{
-            $this->user->notify(new FriendInviteNotification($this->auth_user));
-           redirect()->to('/dashboard')->with('success', 'Request sent successfully');
-        }
+        $this->is_open_send_invitation = false;
+        redirect()->route('dashboard');
+    }
+    public function sendInvitation()
+    {
         
+        try {
+            $allready_sent =  $this->user->unreadNotifications()->where('type', 'App\Notifications\FriendInviteNotification')->where('data->user_id', $this->auth_user->id)->first();
 
-        
-       } catch (ThrottlesExceptions $e) {
-              # code...
-              return redirect()->back()->with('error', 'Vous avez déjà envoyé une invitation à cet utilisateur ou il l\'a déjà reçu');
-       }
-      
-   
-        
+            if ($allready_sent != null) {
+                redirect()->to('/dashboard')->with('error', 'You have already sent a request to this user');
+            } else {
+               
+ 
+                event(new SendMessageEvent($this->message ,$this->user));
+                 event(new SendInvitationEvent($this->user, $this->auth_user));
+             redirect()->to('/dashboard')->with('success', 'Request sent successfully');
+
+                $this->is_open_send_invitation = false;
+                
+                
+            }
+        } catch (ThrottlesExceptions $e) {
+            # code...
+            return redirect()->back()->with('error', 'Vous avez déjà envoyé une invitation à cet utilisateur ou il l\'a déjà reçu');
+        }
+       
     }
     /**
      * 
      * block friend
      */
-    
+
     public function blockFriend($id)
     {
         $this->friend_to_block = $this->auth_user->friends()->where('id', $id)->first();
         $this->friend_to_block->block();
         $this->getFriends();
-        
     }
     /**
      * 
@@ -135,8 +157,8 @@ class FriendsController extends Component
      */
     public function sendFriendRequest()
     {
-       
-       $this->notify($this->user_to_add, new FriendInviteNotification($this->auth_user));
+
+        $this->notify($this->user_to_add, new FriendInviteNotification($this->auth_user));
         $this->getFriends();
     }
 
@@ -144,17 +166,15 @@ class FriendsController extends Component
      * 
      * accept friend request
      */
-    public function acceptUserAsFriend(){
-
-        
+    public function acceptUserAsFriend()
+    {
     }
     /**
      * 
      * decline friend request
      */
-    public function declineUserAsFriend(){
-
-
+    public function declineUserAsFriend()
+    {
     }
     /**
      * 
@@ -173,7 +193,6 @@ class FriendsController extends Component
      */
     public function sendMessage()
     {
-      
     }
     /**
      * 
@@ -181,7 +200,6 @@ class FriendsController extends Component
      */
     public function getMessage()
     {
-        
     }
     /**
      * 
@@ -189,7 +207,6 @@ class FriendsController extends Component
      */
     public function deleteMessage()
     {
-        
     }
     /**
      * Get Notifications
@@ -197,22 +214,20 @@ class FriendsController extends Component
     public function getUnReadnotifications()
     {
         $user = Auth::user();
-        
-        if( isset($user->unreadNotifications)){
+
+        if (isset($user->unreadNotifications)) {
             $this->notifications = $user->unreadNotifications;
             return Blade::render('dashboard', [
                 'user' => $user,
                 'notifications' => $this->notifications,
             ]);
-            
-        }else{
+        } else {
             $this->notifications = [];
             session()->flash('error', 'No notifications');
         }
-    
     }
-    
-     
+
+
 
 
 
@@ -220,6 +235,4 @@ class FriendsController extends Component
     {
         return view('livewire.back.friends-controller');
     }
-
-   
 }

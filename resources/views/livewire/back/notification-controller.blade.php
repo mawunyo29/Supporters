@@ -1,5 +1,5 @@
 <div>
-    @if ($user->unreadNotifications->count() > 0)
+    @if ($user->unreadNotifications->count() > 0 && isset($user))
     <aside class="z-0 hidden sm:block sm:flex-shrink-0 sm:order-fast ">
         <div class="relative flex flex-col h-full bg-gray-100 border-r border-gray-200 w-96" x-show="showNotifications"
             x-transition:enter="transition ease-out duration-150 sm:ease-in-out sm:duration-300"

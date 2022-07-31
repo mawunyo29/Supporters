@@ -1,11 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="">
-            <img src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-dashboard/assets/img/drake.jpg"
-                alt="avatar image"
-                class="inline-flex items-center justify-center w-12 h-12 mr-2 text-white transition-all duration-200 ease-in-out rounded-full cursor-pointer text-size-sm rounded-circle" />
-        </div>
-
+   
+     @livewire('front.show-friends', ['user' => $user], key($user->id))
+     
     </x-slot>
 
 
@@ -573,39 +570,47 @@
 
 
     </div>
-    @if ( Route::currentRouteName() == 'add_to_friends')
+
     @livewire('back.friends-controller', ['user' => $user ])
-    @endif
+    @livewire('back.notification-components.send-notification', ['userId' => $user], key($user->id))
+
+
     {{-- @if (Route::currentRouteName() == 'notifications')
-    <div class="relative bottom-0 min-h-full p-2 -ml-12 rounded-lg shadow-sm w-72 bg-slate-400 shrink-0 hover:shadow-lg">
-        <ul class="relative space-y-1 overflow-y-auto bg-white rounded-md cursor-pointer dark:bg-gray-900 hover:bg-gray-100 ">
+    <div
+        class="relative bottom-0 min-h-full p-2 -ml-12 rounded-lg shadow-sm w-72 bg-slate-400 shrink-0 hover:shadow-lg">
+        <ul
+            class="relative space-y-1 overflow-y-auto bg-white rounded-md cursor-pointer dark:bg-gray-900 hover:bg-gray-100 ">
             @foreach ($notifications as $notification)
-                <li wire:key='{{md5($notification->id)}}' class="flex items-center px-2 py-2 text-sm font-medium text-center text-gray-800 transition duration-300 ease-in-out origin-left transform bg-gray-300 border-b rounded-md test group-hover:bg-gray-700 border-b-slate-500 dark:border-b-white dark:text-white hover:text-white group">{{$notification->data['name']}} <span class="ml-1"> {{__(' vous demande en ami')}}</span>
-                    <div class="flex items-center mx-1 space-x-3 ">
-                        <button class="flex items-center justify-center w-6 h-6 text-green-800 bg-gray-200 rounded-full hover:bg-gray-300 ">
-                            <span class="text-base material-symbols-outlined">
-                                person_add
-                                </span>
-                          
-                        </button>
-                        <button class="flex items-center justify-center w-6 h-6 text-red-800 bg-gray-200 rounded-full hover:bg-gray-300">
-                            <span class="text-base material-symbols-outlined">
-                                layers_clear
-                                </span>
-                        </button>
-    
-                    </div>
-                </li>
-                
-                
-              
+            <li wire:key='{{md5($notification->id)}}'
+                class="flex items-center px-2 py-2 text-sm font-medium text-center text-gray-800 transition duration-300 ease-in-out origin-left transform bg-gray-300 border-b rounded-md test group-hover:bg-gray-700 border-b-slate-500 dark:border-b-white dark:text-white hover:text-white group">
+                {{$notification->data['name']}} <span class="ml-1"> {{__(' vous demande en ami')}}</span>
+                <div class="flex items-center mx-1 space-x-3 ">
+                    <button
+                        class="flex items-center justify-center w-6 h-6 text-green-800 bg-gray-200 rounded-full hover:bg-gray-300 ">
+                        <span class="text-base material-symbols-outlined">
+                            person_add
+                        </span>
+
+                    </button>
+                    <button
+                        class="flex items-center justify-center w-6 h-6 text-red-800 bg-gray-200 rounded-full hover:bg-gray-300">
+                        <span class="text-base material-symbols-outlined">
+                            layers_clear
+                        </span>
+                    </button>
+
+                </div>
+            </li>
+
+
+
             @endforeach
         </ul>
     </div>
     @endif --}}
 
-   
-   
+
+
     @push('scripts')
     <script>
         window.addEventListener('load', function () {

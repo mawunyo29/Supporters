@@ -6,14 +6,16 @@ use App\Models\Friend;
 use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Messages\BroadcastMessage;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Auth;
 
-class FriendInviteNotification extends Notification
+class FriendInviteNotification extends Notification implements ShouldQueue
 {
     use Queueable;
     public $user;
+    public $message;
 
     /**
      * Create a new notification instance.
@@ -23,6 +25,7 @@ class FriendInviteNotification extends Notification
     public function __construct(User $user)
     {
         $this->user = $user;
+        $this->message = Auth::user()->name.' sent you a friend request';
     }
 
 
@@ -34,7 +37,7 @@ class FriendInviteNotification extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail', 'database'];
+        return ['mail', 'database','broadcast'];
     }
 
     /**
@@ -68,11 +71,27 @@ class FriendInviteNotification extends Notification
         return [
             "name" => $this->user->name ,
             "user_id" => $this->user->id,
-            
+            "message" => $this->message,     
         ];
     }
+    /**
+     * use for broadcast notification
+     */
    
-
+    public function toBroadcast($notifiable)
+    {
+        return (new BroadcastMessage([
+            "name" => $this->user->name ,
+            "user_id" => $this->user->id,
+            "message" => $this->message,            
+        ]))->onConnection('database')
+        ->onQueue('broadcasts');
+    }
+   
+    public function broadcastType()
+    {
+        return 'broadcast.message';
+    }
      
     
 }

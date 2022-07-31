@@ -22,14 +22,13 @@
     @livewireStyles
 
     <!-- Scripts -->
-    <script src=" {{mix('js/app.js')}}" defer></script>
+
 </head>
 
 <body class="font-sans antialiased" id="content">
     <x-jet-banner />
-    <div class="min-h-screen bg-gray-100 dark:bg-indigo-700 dark:text-white" id="app_content"
-       >
-       {{-- ondrop="drop_handler(event)" ondragover="dragover_handler(event)" --}}
+    <div class="min-h-screen bg-gray-100 dark:bg-indigo-700 dark:text-white" id="app_content">
+        {{-- ondrop="drop_handler(event)" ondragover="dragover_handler(event)" --}}
         @livewire('navigation-menu')
         <!-- Page Heading -->
         @if (isset($header))
@@ -40,7 +39,8 @@
         </header>
         @endif
         <!-- Page Content -->
-        <div x-data="{ open: false,showNotifications:false }" @keydown.window.escape="open = false" @keydown.window.escape="showNotifications = false">
+        <div x-data="{ open: false,showNotifications:false }" @keydown.window.escape="open = false"
+            @keydown.window.escape="showNotifications = false">
             <div x-show="open" class="fixed inset-0 z-40 flex md:hidden"
                 x-description="Off-canvas menu for mobile, show/hide based on off-canvas menu state." x-ref="dialog"
                 aria-modal="true" style="display: none">
@@ -194,7 +194,7 @@
                 </div>
             </div>
             <!-- Static sidebar for desktop -->
-            <div class="hidden md:flex  md:flex-row md:fixed md:inset-y-0" id="sidebar" >
+            <div class="hidden md:flex md:flex-row md:fixed md:inset-y-0" id="sidebar">
                 <!-- Sidebar component, swap this element with another sidebar if you like -->
                 <div class="z-40 flex flex-col flex-1 min-h-0 bg-gray-100 shadow-md dark:bg-blue-800 dark:text- ">
                     <div class="flex flex-col flex-1 pt-5 pb-4 overflow-y-auto ">
@@ -282,28 +282,9 @@
                                 <p class="left_slider_content">Déconnexion</p>
                             </a>
                             {{-- inbox notification --}}
-                            <a href="{{route('notifications')}}" @click.prevent="showNotifications= !showNotifications"
-                                class="flex items-center px-2 py-2 text-sm font-medium text-gray-800 rounded-md dark:text-white hover:bg-gray-700 hover:text-white group"
-                                x-state-description='undefined: "bg-gray-900 text-white", undefined: "text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white"'>
-                                <svg class="flex-shrink-0 w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-100 dark:text-white"
-                                    x-state-description='undefined: "text-gray-800 dark:text-white", undefined: "text-gray-400 group-hover:text-gray-100 dark:text-white"'
-                                    x-description="Heroicon name: outline/mail" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                                    </path>
-                                </svg>
-                                @foreach ($user->unreadNotifications as $notification)
-                                @if ($notification->type == 'App\Notifications\FriendInviteNotification')
-                                <span
-                                    class="fixed items-center w-4 h-4 mt-2 ml-2 text-xs text-center text-white bg-red-600 rounded-full">{{$user->unreadNotifications->count()}}</span>
-                                @endif
-                                @endforeach
-                                <p
-                                    class="fixed items-center hidden px-2 py-2 text-center text-gray-700 duration-300 ease-in-out origin-left transform scale-90 bg-gray-200 rounded-md shadow-md left_info group-hover:block ring-2 group-hover:translate-y-full ">
-                                    {{$user->unreadNotifications->count() >0? __("Vous avez ".$user->unreadNotifications->count()." invitations en attente"):"Vous n'avez pas de message" }} </p>
-                                <p class="left_slider_content">Notifications</p>
-                            </a>
+
+                            @livewire('back.notification-components.count-un-read-notification', ['user' => $user],
+                            key($user->id))
                             {{-- end inbox notification --}}
                             <a href="#"
                                 class="flex items-center px-2 py-2 text-sm font-medium text-gray-800 rounded-md dark:text-white hover:bg-gray-700 hover:text-white group"
@@ -319,6 +300,7 @@
                                 <p class="left_slider_content">Aide</p>
                             </a>
                             {{-- notification count --}}
+
                         </nav>
                     </div>
                     <div class="flex flex-shrink-0 p-4 bg-gray-700 dark:bg-indigo-800">
@@ -340,7 +322,8 @@
                         </a>
                     </div>
                 </div>
-                @livewire('back.notification-controller')
+                @livewire('back.notification-controller', ['user' => $user], key($user->id))
+               
             </div>
             <div class="flex flex-col flex-1 md:px-14 ">
                 <div class="sticky top-0 z-10 pt-1 pl-1 bg-gray-100 md:hidden sm:pl-3 sm:pt-3">
@@ -363,6 +346,7 @@
                                 Dashboard
                             </h1>
                         </div> --}}
+                       
                         <div class="w-full px-4 sm:px-6 md:px-8">
                             {{ $slot }}
                         </div>
@@ -377,6 +361,13 @@
     @stack('scripts')
     @livewireScripts
     <script defer src="https://unpkg.com/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
+  
+    <script src=" {{mix('js/app.js')}}" defer></script>
+<script>
+         window.App = {!! json_encode([
+        'user' => auth()->check() ? auth()->user()->id : null,
+    ]) !!};
+    </script>
 
 </body>
 

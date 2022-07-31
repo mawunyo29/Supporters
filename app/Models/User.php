@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -18,6 +20,7 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+
 
     /**
      * The attributes that are mass assignable.
@@ -80,7 +83,7 @@ class User extends Authenticatable
      */
     public function friends()
     {
-        return $this->hasMany(User::class, 'id', 'friend_id');
+        return $this->belongsToMany(Friend::class)->withPivot('user_id', 'friend_id');
     }
 
     /**
@@ -96,7 +99,7 @@ class User extends Authenticatable
      * Get the user's friend requests.
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    
+
     public function friendRequests()
     {
         return $this->hasMany(FriendRequest::class, 'user_id', 'id');
@@ -107,8 +110,22 @@ class User extends Authenticatable
      */
     public static function search($name)
     {
-        return User::where('name', 'like', '%' .trim($name). '%')->whereNotIn('id',collect(Auth::user()->id))->get();
+        return User::where('name', 'like', '%' . trim($name) . '%')->whereNotIn('id', collect(Auth::user()->id))->get();
     }
 
-   
+
+    public function receivesBroadcastNotificationsOn()
+    {
+        return 'private.sendinvitation.' . $this->id;
+    }
+    /**
+     *  is frind with user
+     */
+  
+    public function isFriendWith(User $user)
+    {
+        return (bool) $this->friends()->where('friend_id', $user->id)->count();
+    }
+  
+    
 }

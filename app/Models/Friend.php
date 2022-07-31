@@ -13,14 +13,16 @@ class Friend extends Model
     use HasFactory;
     use SoftDeletes;
     use Notifiable;
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [
-        'user_id', 'name', 'avatar', 'is_online', 'is_blocked',
-    ];
+    // protected $fillable = [
+    //     'user_id', 'name', 'avatar', 'is_online', 'is_blocked','is_friend_id'
+    // ];
+    protected $guarded = [];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -41,9 +43,9 @@ class Friend extends Model
     /**
      * Get the user that owns the friend.
      */
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsToMany(User::class ,'friend_user', 'friend_id', 'user_id');
     }
     
     /**

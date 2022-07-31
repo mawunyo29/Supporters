@@ -21,3 +21,10 @@ mix.js('resources/js/app.js', 'public/js')
         require('tailwindcss'),
         require('autoprefixer'),
     ]);
+    mix.options(options= {
+        hmrOptions: {
+            host:'localhost',
+            port:8080,
+        }
+        });
+

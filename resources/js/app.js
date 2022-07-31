@@ -7,6 +7,47 @@ window.Alpine = Alpine;
 Alpine.start();
 
 
+
+const invitationchannel = Echo.private('private.sendinvitation.'+window.App.user);
+const messagechannel = Echo.private('private.message.'+window.App.user);
+invitationchannel.subscribed( () => {
+  console.log('subscribed');
+}
+).listen('.send.invitation', (e) => {
+  console.log(e.message);
+ 
+  console.log('invitation sent');
+  });
+  messagechannel.subscribed( () => {
+    console.log('ello');
+  }
+  ).listen('.send.message', (e) => {
+    console.log(e);
+    window.Livewire.emit('notifyNewMessage', e.message);
+    window.Livewire.emit('sendNotification');
+ window.Livewire.emit('sendNotification:'+ e.id);
+    });
+
+// window.addEventListener('DOMContentLoaded', function () {
+//   window.Echo.private('private.send.invitation'+window.App.user)
+//        .listen('SendNotificationEvent', (e) => {
+//            window.Livewire.emit('sendNotification');
+//           window.Livewire.emit('sendNotification:'+ e.id);
+//           console.log(e.id);
+//        });
+
+//        window.Echo.private('channel-message'+window.App.user )
+//        .listen('SendMessageEvent', (e) => {
+//            window.Livewire.emit('sendNotification');
+//           window.Livewire.emit('sendNotification:'+ e.id);
+//           console.log(e.message);
+//        })
+//        window.Echo.channel(`App.User.${window.App.user}`)
+// .notification((notification) => {
+// console.log(notification.type);
+// });
+
+// });
 // Language: javascript
 
 
@@ -101,4 +142,3 @@ window.onload = function () {
 
 
 }
-
