@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 
+
 class Friend extends Model
 {
     use HasFactory;
@@ -45,8 +46,16 @@ class Friend extends Model
      */
     public function users()
     {
-        return $this->belongsToMany(User::class ,'friend_user', 'friend_id', 'user_id');
+        return $this->belongsToMany(User::class)->using(FriendUser::class);;
     }
+    /**
+     * Get the friend that owns the user.
+     */
+    public function friend_users(){
+        
+        return $this->hasMany(FriendUser::class);
+    }
+
     
     /**
      * Get the messages for the friend.

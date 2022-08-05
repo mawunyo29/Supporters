@@ -8,25 +8,61 @@ Alpine.start();
 
 
 
-const invitationchannel = Echo.private('private.sendinvitation.'+window.App.user);
-const messagechannel = Echo.private('private.message.'+window.App.user);
-invitationchannel.subscribed( () => {
+const invitationchannel = Echo.private('private.sendinvitation.' + window.App.user);
+const messagechannel = Echo.join('presence.message.1');
+const inputMessage = document.getElementById('inputMessage');
+const typingMessage = document.getElementById('typingMessage');
+inputMessage.addEventListener('input', function (e) {
+
+
+  if (inputMessage.value.length === 0) {
+
+    messagechannel.whisper('stop-typing');
+  } else {
+    messagechannel.whisper('typing', {
+
+      user:window.App.user ,
+    });
+  }
+});
+
+
+invitationchannel.subscribed(() => {
   console.log('subscribed');
 }
 ).listen('.send.invitation', (e) => {
   console.log(e.message);
- 
+  window.Livewire.emit('notifyNewMessage', e.message);
+  window.Livewire.emit('sendNotification');
+  window.Livewire.emit('sendNotification:' + e.id);
   console.log('invitation sent');
-  });
-  messagechannel.subscribed( () => {
-    console.log('ello');
-  }
-  ).listen('.send.message', (e) => {
-    console.log(e);
-    window.Livewire.emit('notifyNewMessage', e.message);
-    window.Livewire.emit('sendNotification');
- window.Livewire.emit('sendNotification:'+ e.id);
-    });
+});
+messagechannel.here((users) => {
+  console.log({ users });
+
+}
+).joining((user) => {
+  console.log({ 'user  joinning': user });
+}
+).leaving((user) => {
+  console.log({ 'user leaving': user });
+
+}
+).listen('.send.message', (e) => {
+
+  window.Livewire.emit('typingMessage', e.message, e.user);
+
+}
+).listenForWhisper('typing', (e) => {
+  console.log('typing...'+e.user);
+  typingMessage.textContent = e.user + ' is typing...';
+
+
+}).listenForWhisper('stop-typing', (e) => {
+  console.log(e);
+  typingMessage.textContent = '';
+}
+);
 
 // window.addEventListener('DOMContentLoaded', function () {
 //   window.Echo.private('private.send.invitation'+window.App.user)

@@ -1,8 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
-   
-     @livewire('front.show-friends', ['user' => $user], key($user->id))
-     
+
+        @livewire('front.show-friends', ['user' => $user], key($user->id))
+
     </x-slot>
 
 
@@ -78,7 +78,7 @@
         </div>
 
         @endif
-
+        @livewire('back.notification-components.send-notification', ['userId' => $user], key($user->id))
 
         <!-- component -->
         {{-- <div class="flex flex-row h-screen m-0 overflow-hidden antialiased text-gray-800 ">
@@ -550,29 +550,47 @@
                 </div>
             </div>
         </div> --}}
-        <div class="z-0 block  md:flex md:flex-row">
-            <div class="w-full overflow-auto md:w-1/2 will-change-scroll bg-orange-600">
 
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, quos repellendus voluptate itaque
-                vitae quia facilis. Adipisci, esse. Architecto laudantium dolorum earum velit. Temporibus vitae nam,
-                repudiandae nobis optio facere.
+        <div class="z-0 block md:flex md:flex-row">
 
+            <article class="px-2 resize-x">
+                <div class=" right-0 w-full  max-h-[800px] bg-gray-100 overflow-y-auto rounded-md ring-2 scrollbar ">
 
+                    <ul class="px-2">
+                        @for ($i=0; $i<50; $i++) <li
+                            class="border-b-gray-300 my-2 rounded-lg shadow-md ring-2 border-l-2 dark:bg-indigo-900 {{$i%2==0?'border-l-green-300 ring-green-400':($i%3==0?'border-l-blue-300':'border-l-pink-300')}}">
+                            <img class="w-8 h-8 rounded-full"
+                                src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
+                                alt="">
+                            <p class="items-center p-1 text-justify-center"> Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Provident, quos repellendus voluptate itaque
+                                vitae quia facilis. Adipisci, esse. Architecto laudantium dolorum earum velit.
+                                Temporibus vitae nam,
+                                repudiandae nobis optio facere.</p>
+                            </li>
+                            @endfor
+                    </ul>
+                </div>
+
+            </article>
+
+            <div class="bottom-0 w-full p-2 overflow-auto will-change-scroll">
+                <div class="">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, quos repellendus voluptate
+                    itaque
+                    vitae quia facilis. Adipisci, esse. Architecto laudantium dolorum earum velit. Temporibus vitae nam,
+                    repudiandae nobis optio facere.
+                </div>
             </div>
-            <div class="right-0 w-full md:w-1/2 ">
 
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, quos repellendus voluptate itaque
-                vitae quia facilis. Adipisci, esse. Architecto laudantium dolorum earum velit. Temporibus vitae nam,
-                repudiandae nobis optio facere.
 
-            </div>
         </div>
 
 
     </div>
 
     @livewire('back.friends-controller', ['user' => $user ])
-    @livewire('back.notification-components.send-notification', ['userId' => $user], key($user->id))
+  
 
 
     {{-- @if (Route::currentRouteName() == 'notifications')
@@ -626,6 +644,17 @@
         });
       
     </script>
+
+ <script>
+     window.addEventListener('load', () => {
+        
+         window.addEventListener('auth_friends', event => {
+         alert('Name updated to: ' + event.detail.activity);
+         console.log(event.detail.activity);
+     })
+     });
+    
+     </script>
 
     @endpush
 </x-app-layout>

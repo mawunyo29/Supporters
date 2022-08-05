@@ -5038,20 +5038,47 @@ __webpack_require__.r(__webpack_exports__);
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"].start();
 var invitationchannel = Echo["private"]('private.sendinvitation.' + window.App.user);
-var messagechannel = Echo["private"]('private.message.' + window.App.user);
+var messagechannel = Echo.join('presence.message.1');
+var inputMessage = document.getElementById('inputMessage');
+var typingMessage = document.getElementById('typingMessage');
+inputMessage.addEventListener('input', function (e) {
+  if (inputMessage.value.length === 0) {
+    messagechannel.whisper('stop-typing');
+  } else {
+    messagechannel.whisper('typing', {
+      user: window.App.user
+    });
+  }
+});
 invitationchannel.subscribed(function () {
   console.log('subscribed');
 }).listen('.send.invitation', function (e) {
   console.log(e.message);
-  console.log('invitation sent');
-});
-messagechannel.subscribed(function () {
-  console.log('ello');
-}).listen('.send.message', function (e) {
-  console.log(e);
   window.Livewire.emit('notifyNewMessage', e.message);
   window.Livewire.emit('sendNotification');
   window.Livewire.emit('sendNotification:' + e.id);
+  console.log('invitation sent');
+});
+messagechannel.here(function (users) {
+  console.log({
+    users: users
+  });
+}).joining(function (user) {
+  console.log({
+    'user  joinning': user
+  });
+}).leaving(function (user) {
+  console.log({
+    'user leaving': user
+  });
+}).listen('.send.message', function (e) {
+  window.Livewire.emit('typingMessage', e.message, e.user);
+}).listenForWhisper('typing', function (e) {
+  console.log('typing...' + e.user);
+  typingMessage.textContent = e.user + ' is typing...';
+}).listenForWhisper('stop-typing', function (e) {
+  console.log(e);
+  typingMessage.textContent = '';
 }); // window.addEventListener('DOMContentLoaded', function () {
 //   window.Echo.private('private.send.invitation'+window.App.user)
 //        .listen('SendNotificationEvent', (e) => {

@@ -29,10 +29,10 @@ class SendInviteNotification implements ShouldQueue
     {
         $user = $event->user;
         $auth = $event->auth;
-        $event->message;
+       $message= $event->message;
         $event->notifiable;
        
-        $user->notify(new FriendInviteNotification($auth));
+        $user->notify(new FriendInviteNotification($auth ,$message));
     }
 }
 // Compare this snippet from app\Http\Livewire\Back\NotificationController.php:

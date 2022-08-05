@@ -29,11 +29,12 @@ class SendInvitationEvent implements ShouldBroadcastNow
      *
      * @return void
      */
-    public function __construct(User $user ,$auth)
+    public function __construct(User $user ,$auth, $message)
     {
         $this->user = $user;
         $this->auth = $auth;
-        $this->message = $this->auth->name.' sent you a friend request';
+        $message = $this->auth->name.' sent you a friend request';
+        $this->message = $message;
         $this->notifiable = $this->user;
        
         

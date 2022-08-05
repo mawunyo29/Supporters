@@ -26,6 +26,7 @@ class CreatePostsTable extends Migration
             $table->string('file')->nullable();
             $table->string('link')->nullable();
             $table->string('link_text')->nullable();
+            $table->boolean('is_published')->default(false);
             $table->softDeletes('deleted_at', 0);
             $table->timestamps();
         });

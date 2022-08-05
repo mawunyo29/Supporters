@@ -60,7 +60,7 @@ class FriendsController extends Component
     public function notifyNewUser()
     {
         
-       dd('notifyNewUser');
+       
         $this->showNewUserNotification = true;
         $this->dispatchBrowserEvent('sendNotification');
 
@@ -126,8 +126,8 @@ class FriendsController extends Component
             } else {
                
  
-                event(new SendMessageEvent($this->message ,$this->user));
-                 event(new SendInvitationEvent($this->user, $this->auth_user));
+                
+                 event(new SendInvitationEvent($this->user, $this->auth_user, $this->message));
              redirect()->to('/dashboard')->with('success', 'Request sent successfully');
 
                 $this->is_open_send_invitation = false;
@@ -158,7 +158,7 @@ class FriendsController extends Component
     public function sendFriendRequest()
     {
 
-        $this->notify($this->user_to_add, new FriendInviteNotification($this->auth_user));
+        $this->notify($this->user_to_add, new FriendInviteNotification($this->auth_user, $this->message));
         $this->getFriends();
     }
 

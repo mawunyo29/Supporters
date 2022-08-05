@@ -22,11 +22,12 @@ class FriendInviteNotification extends Notification implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct(User $user ,$message)
     {
         $this->user = $user;
-        $this->message = Auth::user()->name.' sent you a friend request';
+        $this->message = $message;
     }
+  
 
 
     /**

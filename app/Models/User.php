@@ -2,13 +2,19 @@
 
 namespace App\Models;
 
+use App\Http\Middleware\TrackUserActivity;
+use Carbon\Carbon;
+use Closure;
+use GuzzleHttp\Middleware;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Database\Eloquent\BroadcastsEvents;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -21,7 +27,7 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
-
+ public $last_activity;
     /**
      * The attributes that are mass assignable.
      *
@@ -85,6 +91,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Friend::class)->withPivot('user_id', 'friend_id');
     }
+    /**
+     * Get the user's friends.
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function friend_users()
+    {
+        return $this->hasMany(FriendUser::class);
+    }
 
     /**
      * Get the user's friend requests.
@@ -126,6 +140,17 @@ class User extends Authenticatable
     {
         return (bool) $this->friends()->where('friend_id', $user->id)->count();
     }
-  
+
     
+
+    /**
+     * track user activity
+     */
+    public function trackActivity($user_id)
+    {
+   $this->last_activity = DB::table('sessions')->where('user_id', $user_id)->first();
+  
+   return $this->last_activity->last_activity ?? null;
+    }
+
 }

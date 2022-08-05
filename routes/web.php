@@ -4,6 +4,7 @@ use App\Events\SendInvitationEvent;
 use App\Http\Livewire\Back\FriendsController;
 use App\Http\Livewire\Back\NotificationComponents\CountUnReadNotification;
 use App\Http\Livewire\Back\SocialiteConnexion;
+use App\Http\Livewire\Back\UserPost;
 use App\Http\Livewire\Searchs\SearchController;
 use App\Models\User;
 use App\Notifications\FriendInviteNotification;
@@ -42,6 +43,7 @@ Route::middleware([
         Route::post('/search/{id}', [SearchController::class, 'sendInvitation'])->name('send_request');
         Route::get('/notify', [FriendsController::class, 'getUnReadnotifications'])->name('notifications');
         Route::get('/search', SearchController::class)->name('search');
+        Route::get('/post',UserPost::class)->name('posts.index');
         
     });
    

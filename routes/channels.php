@@ -20,7 +20,7 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
 Broadcast::channel('private.sendinvitation.{id}', function ($user, $id) {
     return true;
 });
-Broadcast::channel('private.message.{id}', function ($user, $id) {
-    return true;
+Broadcast::channel('presence.message.{id}', function ($user, $id) {
+    return $user;
 });
 

@@ -35,7 +35,7 @@ class SendMessageEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('private.message.'.$this->user->id);
+        return new PresenceChannel('presence.message.1');
     }
     public function broadcastAs()
     {
@@ -46,6 +46,7 @@ class SendMessageEvent implements ShouldBroadcast
        
         return [
             'message' => $this->message,
+            'user' => $this->user->only(['name','avatar','id']),
         ];
     }
 }

@@ -70,5 +70,16 @@
   display:none;
 }
 
+.alphabet {
  
-  
+  box-sizing: border-box;
+  border: 1px solid;
+  border-bottom: 0;
+  border-top: 0;
+  width: calc(100% + 10px);
+  overflow-y: auto;
+  padding-right: 10px;
+}
+.scrollbar::-webkit-scrollbar {
+  width: 0;
+}

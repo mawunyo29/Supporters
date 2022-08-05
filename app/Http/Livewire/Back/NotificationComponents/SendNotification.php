@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Back\NotificationComponents;
 
+use App\Models\User;
 use Livewire\Component;
 
 class SendNotification extends Component
@@ -10,10 +11,12 @@ class SendNotification extends Component
     public $open_new_user_notification = false;
     public $userId;
     public $message;
+    public $user;
 
     public function mount($userId)
     {
         $this->userId = $userId->id;
+        $this->user = User::findOrfail($this->userId);
     }
  
     // public function getListeners()
