@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Front;
 
 use App\Models\Friend;
 use App\Models\User;
+use Illuminate\Support\Facades\Blade;
 use Livewire\Component;
 
 
@@ -17,6 +18,9 @@ class ShowFriends extends Component
     public $currentSlide = 0;
 
 
+    protected $listeners = [
+        'selectFriendById'
+    ];
     public function listeners(){
         return [
             "auth_friends:".$this->user->id => 'getUserByFriendId',
@@ -64,9 +68,10 @@ class ShowFriends extends Component
      */
     public function selectFriend($friend_id)
     {
-        $this->user = User::find($friend_id);
       
-        $this->emitSelf('selectFriend', $this->user);
+      
+        $this->emitSelf('selectFriend', $friend_id);
+        return Blade::render('dashboard', ['user' => $this->user , 'friends' => $this->friends]);
     }
 
    

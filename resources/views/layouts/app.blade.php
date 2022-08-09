@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    
 
     <title>{{ config('app.name', Route::currentRouteName()) }}</title>
     @yield('title')
@@ -239,11 +240,7 @@
     <script defer src="https://unpkg.com/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
   
     <script src=" {{mix('js/app.js')}}" defer></script>
-<script>
-         window.App = {!! json_encode([
-        'user' => auth()->check() ? auth()->user()->id : null,
-    ]) !!};
-    </script>
+
 
 </body>
 

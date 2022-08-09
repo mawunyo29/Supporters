@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\Friend;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -21,11 +22,14 @@ class SendMessageEvent implements ShouldBroadcast
      */
     public $message;
     public $user;
-    public function __construct($message ,$user)
+    public $friend;
+    public function __construct($message ,$user ,$friend)
     {
         $this->message = $message;
         $this->user = $user;
+        $this->friend = $friend;
     }
+  
     
 
     /**
@@ -35,7 +39,13 @@ class SendMessageEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PresenceChannel('presence.message.1');
+        $friends = Friend::where('user_id', $this->user->id)->orwhere('friend_id', $this->user->id)->get();
+        $channels = [];
+        foreach ($friends as $friend) {
+            $channels[] = new PresenceChannel('presence.message.'. $friend->id);
+        }
+        return $channels;
+       
     }
     public function broadcastAs()
     {

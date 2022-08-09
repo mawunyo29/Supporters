@@ -55,7 +55,7 @@
                 <p class="left_slider_content">Ajouter</p>
             </a>
             {{-- posts article --}}
-            <a href="{{ route('posts.index') }}"
+            <a href="{{ route('posts.index',auth()->user()->id) }}"
                 class="flex items-center px-2 py-2 text-sm font-medium text-gray-800 rounded-md dark:text-white hover:bg-gray-700 hover:text-white group"
                 x-state-description='undefined: "bg-gray-900 text-white", undefined: "text-gray-800 dark:text-white hover:bg-gray-700 hover:text-white"'>
                 <svg class="flex-shrink-0 w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-100 dark:text-white"

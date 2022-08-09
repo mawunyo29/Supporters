@@ -27,7 +27,7 @@ class User extends Authenticatable
     use Notifiable;
     use TwoFactorAuthenticatable;
 
- public $last_activity;
+    public $last_activity;
     /**
      * The attributes that are mass assignable.
      *
@@ -73,16 +73,7 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
-    public function getRouteKeyName()
-    {
-        return 'name';
-    }
-
+    
     /**
      * Get the user's freinds.
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -135,22 +126,27 @@ class User extends Authenticatable
     /**
      *  is frind with user
      */
-  
+
     public function isFriendWith(User $user)
     {
         return (bool) $this->friends()->where('friend_id', $user->id)->count();
     }
 
-    
+
 
     /**
      * track user activity
      */
     public function trackActivity($user_id)
     {
-   $this->last_activity = DB::table('sessions')->where('user_id', $user_id)->first();
-  
-   return $this->last_activity->last_activity ?? null;
+        $this->last_activity = DB::table('sessions')->where('user_id', $user_id)->first();
+
+        return $this->last_activity->last_activity ?? null;
     }
 
+   
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
 }

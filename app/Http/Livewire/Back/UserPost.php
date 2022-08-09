@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Back;
 
+use App\Models\User;
 use Livewire\Component;
 
 class UserPost extends Component
@@ -15,6 +16,11 @@ class UserPost extends Component
     public $post_image;
     public $post_status;
     public $post_category;
+    
+    public function mount($user){
+        $this->user = User::findOrFail($user) ;
+       
+    }
     public function render()
     {
         return view('livewire.back.user-post');

@@ -5,7 +5,9 @@ use App\Http\Livewire\Back\FriendsController;
 use App\Http\Livewire\Back\NotificationComponents\CountUnReadNotification;
 use App\Http\Livewire\Back\SocialiteConnexion;
 use App\Http\Livewire\Back\UserPost;
+use App\Http\Livewire\Front\ShowFriends;
 use App\Http\Livewire\Searchs\SearchController;
+use App\Models\Friend;
 use App\Models\User;
 use App\Notifications\FriendInviteNotification;
 use Illuminate\Support\Facades\Auth;
@@ -41,12 +43,23 @@ Route::middleware([
         Route::prefix('/dashboard')->group(function () {
         Route::get('/user/{id}', [FriendsController::class, 'sendRequest'])->name('add_to_friends');
         Route::post('/search/{id}', [SearchController::class, 'sendInvitation'])->name('send_request');
+        Route::post('/search/{id}', [SearchController::class, 'sendInvitation'])->name('send');
         Route::get('/notify', [FriendsController::class, 'getUnReadnotifications'])->name('notifications');
         Route::get('/search', SearchController::class)->name('search');
-        Route::get('/post',UserPost::class)->name('posts.index');
-        
+        Route::get('/users/{user:slug}', ShowFriends::class)->name('friend');
+        Route::match(['get', 'post'], '/posts/users/{user:slug}',UserPost::class)->name('posts.index');
     });
-   
+    Route::get('/auth/user',function(User $user ,Friend $friend){
+            $this->user = auth()->check() ? auth()->user() : null;
+            $data = [
+                'user' => $this->user->only(['id', 'name', 'email', 'avatar']),
+                'auth' => auth()->check(),
+                'friends' => $friend->where('user_id', $this->user->id)->orwhere('friend_id', $this->user->id)->get(),
+            ];
+            return $data;
+
+        })->name('auth');
+        
     Livewire::component('count-un-read-notifaction', CountUnReadNotification::class);
 });
 

@@ -1,10 +1,8 @@
 <x-app-layout>
+
     <x-slot name="header">
-
         @livewire('front.show-friends', ['user' => $user], key($user->id))
-
     </x-slot>
-
 
     <div class="">
         @if (session('success'))
@@ -590,7 +588,7 @@
     </div>
 
     @livewire('back.friends-controller', ['user' => $user ])
-  
+
 
 
     {{-- @if (Route::currentRouteName() == 'notifications')
@@ -645,8 +643,8 @@
       
     </script>
 
- <script>
-     window.addEventListener('load', () => {
+    <script>
+        window.addEventListener('load', () => {
         
          window.addEventListener('auth_friends', event => {
          alert('Name updated to: ' + event.detail.activity);
@@ -654,7 +652,7 @@
      })
      });
     
-     </script>
+    </script>
 
     @endpush
 </x-app-layout>

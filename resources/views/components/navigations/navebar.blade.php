@@ -1,4 +1,4 @@
-<div x-data="{ open: false ,leftnav:false}">
+<div x-data="{ open:false ,right_nav:false}">
   <nav class="container mx-auto overflow-hidden sm:px-6 lg:px-8">
     {{-- brand --}}
     <div class="flex flex-row justify-between h-16 space-x-2 md:space-x-6">
@@ -15,47 +15,41 @@
       <div class=" basis-1/2">
         @livewire('searchs.search-controller')
       </div>
+      <div class="flex items-center justify-between space-x-3 px-2 sm:ml-2">
 
-
-      <div class="flex items-center justify-between space-x-3 sm:ml-2">
-
-        <div class="relative flex items-center px-1 mr-8 ">
-          <span class="absolute border-2 border-green-300 rounded-full cursor-pointer material-symbols-outlined ring-2 "
-            id="dark-mode-switch">
-            dark_mode
-          </span>
-          <span
-            class="absolute hidden text-blue-800 border-2 border-green-300 rounded-full cursor-pointer material-symbols-outlined ring-2"
-            id="light">
-            light_mode
-          </span>
+        <div class="relative flex items-center px-1  ">
+          <button class="flex items-center">
+            <x-icons.icon class=" rounded-full cursor-pointer relative text-blue-800" icon='dark_mode' id="dark-mode-switch">
+            </x-icons.icon>
+          </button>
+          <button class="flex items-center" >
+            <x-icons.icon class=" text-blue-800  rounded-full cursor-pointer relative" icon='light_mode'  style="display: none"
+              id="light"></x-icons.icon>
+          </button>
         </div>
-
-        <span
-          class="relative flex items-center px-1 text-blue-800 cursor-pointer material-symbols-outlined dark:text-white"
-          @click="open = true">
-          apps
-        </span>
-
-        <x-icons.icon
-          class="relative flex items-center text-blue-800 cursor-pointer material-symbols-outlined dark:text-white "
-          icon='dashboard_customize' @click="leftnav = !leftnav"></x-icons.icon>
-
+        <button @click="open = true">
+          <x-icons.icon class="relative flex items-center text-blue-800 cursor-pointer px-1 dark:text-white "
+            icon='apps'></x-icons.icon>
+        </button>
+        <button @click="right_nav = !right_nav">
+          <x-icons.icon class="relative flex items-center text-blue-800 cursor-pointer  dark:text-white "
+            icon='dashboard_customize'></x-icons.icon>
+        </button>
       </div>
 
     </div>
   </nav>
 
- @livewire('back.chat-message', ['user' => $user], key($user->id))
+  @livewire('back.chat-message', ['user' => $user], key($user->id))
   {{-- ondrop="drop_handler(event)"
   ondragstart="dragstart_handler(event)" --}}
-  <div @keydown.window.escape="leftnav = false"
-    x-init="$watch(&quot;open&quot;, o =&gt; !o &amp;&amp; window.setTimeout(() =&gt; (leftnav = false), 1000))"
-    x-show="leftnav">
+  <div @keydown.window.escape="right_nav = false"
+    x-init="$watch(&quot;right_nav&quot;, o =&gt; !o &amp;&amp; window.setTimeout(() =&gt; (right_nav = false), 1000))"
+    x-show="right_nav">
     <div class="absolute overflow-hidden inset-y-10">
       <div class="absolute inset-y-20">
         <div class="fixed right-0 z-20 flex max-w-full pl-10 inset-y-36 sm:pl-16 ">
-          <div x-show="leftnav" x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
+          <div x-show="right_nav" x-transition:enter="transform transition ease-in-out duration-500 sm:duration-700"
             x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
             x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
             x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
