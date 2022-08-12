@@ -6,6 +6,8 @@ use App\Events\SendMessageEvent;
 use App\Models\User;
 use Livewire\Component;
 
+use function PHPSTORM_META\map;
+
 class ChatMessage extends Component
 {
     public $message='';
@@ -18,9 +20,10 @@ class ChatMessage extends Component
     public $user_to_add;
     public $taping = '';
     public $messages = [];
-    public $current_user;
+    public $current_user_join_or_leave=[] ;
     public $current_friend;
     public $users = [];
+   
 
     public function mount($user)
     {
@@ -33,7 +36,8 @@ class ChatMessage extends Component
 protected function getListeners()
     {
         return ["sendNotification" => 'notifyNewUser',
-        'typingMessage','friendId'=>'selectFriendById'];
+        'typingMessage','friendId'=>'selectFriendById',
+    'userJoinOrLeave'=>'joinOrLeaveChat',];
     }
  
     public function sendMessage()
@@ -66,9 +70,10 @@ protected function getListeners()
         $this->taping = $typing;
             if ($user) {
                 $this->messages[]=['user'=>$user,'message'=>$typing];
-                $this->current_friend = $friend;
+                $this->current_friend =$user;
             } 
     }
+    
    
     public function chatMessage($message)
     {
@@ -81,9 +86,22 @@ protected function getListeners()
     {
         $this->current_friend = $id;
        
-        
-       $this->chat_modal = !$this->chat_modal;
+       
         User::find($id);
+    }
+/**
+ * join or leave chat
+ */
+    public function joinOrLeaveChat($users)
+    {
+        $lljoin_users = collect($users);
+         foreach ($lljoin_users as $key => $value) {
+            # code...
+            $this->current_user_join_or_leave[] =$lljoin_users[$key]['name'];
+         }
+         $this->current_user_join_or_leave=  collect($this->current_user_join_or_leave)->unique();
+        # code...
+       
     }
 
     public function chatModal()

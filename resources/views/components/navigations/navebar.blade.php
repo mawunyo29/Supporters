@@ -1,4 +1,8 @@
-<div x-data="{ open:false ,right_nav:false}">
+@props(['chat_modal'=>false])
+<?php
+    $chat_modal = $chat_modal ?? false;
+?>
+<div x-data="{ open:'{{$chat_modal}}' ,right_nav:false}" >
   <nav class="container mx-auto overflow-hidden sm:px-6 lg:px-8">
     {{-- brand --}}
     <div class="flex flex-row justify-between h-16 space-x-2 md:space-x-6">
@@ -27,7 +31,7 @@
               id="light"></x-icons.icon>
           </button>
         </div>
-        <button @click="open = true">
+        <button @click="open= !open"> 
           <x-icons.icon class="relative flex items-center text-blue-800 cursor-pointer px-1 dark:text-white "
             icon='apps'></x-icons.icon>
         </button>
@@ -40,7 +44,7 @@
     </div>
   </nav>
 
-  @livewire('back.chat-message', ['user' => $user], key($user->id))
+  @livewire('back.chat-message', ['user' => $user ,'chat_modal'=>$chat_modal], key($user->id))
   {{-- ondrop="drop_handler(event)"
   ondragstart="dragstart_handler(event)" --}}
   <div @keydown.window.escape="right_nav = false"

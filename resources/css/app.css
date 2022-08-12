@@ -14,8 +14,11 @@
   }
  
 }
+body {
+  overscroll-behavior: none;
+}
 .widthcal{
-  width: calc(100% - 80px);
+  width: calc(100% - 22rem);
   
 }
 @keyframes rotaionglobe {
@@ -147,4 +150,9 @@
     transform: translateY(0px);
     background-color: #B5D9CB; /*rgba(20,105,69,.2)*/;
   }
+}
+.message{
+  
+  overflow: auto;
+ overscroll-behavior: contain;
 }

@@ -5089,6 +5089,7 @@ var getEvents = /*#__PURE__*/function () {
                   console.log({
                     users: users
                   });
+                  window.Livewire.emit('userJoinOrLeave', users);
                 }).joining(function (user) {
                   console.log({
                     'user  joinning': user
@@ -5099,22 +5100,22 @@ var getEvents = /*#__PURE__*/function () {
                   });
                 }).listen('.send.message', function (e) {
                   window.Livewire.emit('typingMessage', e.message, e.user, friend);
-                  var chatboxs = document.getElementById('chatbox');
-                  var scrollHeightb = chatboxs.scrollHeight - Math.round(chatboxs.scrollTop - 20) === chatboxs.clientHeight;
-                  var scrollBottom = chatboxs.scrollHeight - chatboxs.scrollTop - chatboxs.clientHeight;
+                  var chatboxs = document.getElementById('chatbox'); // const scrollHeightb = chatboxs.scrollHeight - Math.round(chatboxs.scrollTop) === chatboxs.clientHeight;
+                  // const scrollBottom = chatboxs.scrollHeight - chatboxs.scrollTop - chatboxs.clientHeight
+                  // if (!scrollBottom) {
+                  //   chatboxs.scrollTop = chatboxs.scrollHeight;
 
-                  if (!scrollHeightb) {
-                    chatboxs.scrollTop = chatboxs.scrollHeight;
-                    window.getComputedStyle(chatboxs).overflowY === 'visible';
-                    window.getComputedStyle(chatboxs).overflowY !== 'hidden';
-                    console.log(getComputedStyle(chatboxs).height);
-                  }
+                  var taill = document.getElementsByClassName("message"); // }
 
-                  if (scrollBottom > 0) {
-                    chatboxs.scrollTop = chatboxs.scrollHeight;
-                  }
+                  chatboxs.scrollTop = chatboxs.scrollHeight; // const taills =  document.querySelectorAll('.message');
+                  // taills.forEach(tail => {
+                  //   tail.scrollIntoView({ behavior: 'smooth' });
+                  // }
+                  // );
+                  // window.getComputedStyle(chatboxs).overflowY === 'visible'
+                  // window.getComputedStyle(chatboxs).overflowY !== 'hidden'
 
-                  console.log(scrollHeightb);
+                  console.log(getComputedStyle(chatboxs).height); // console.log(chatboxs.scrollHeight);
                 }).listenForWhisper('typing', function (e) {
                   typingMessage.textContent = e.user + ' is typing';
                   typingMessage.classList.remove('hidden');

@@ -61,34 +61,50 @@ const getEvents = async () => {
     messagechannel.forEach(channel => {
       channel.here((users) => {
         console.log({ users });
+        window.Livewire.emit('userJoinOrLeave', users);
 
       }
       ).joining((user) => {
         console.log({ 'user  joinning': user });
+       
       }
       ).leaving((user) => {
         console.log({ 'user leaving': user });
+      
 
       }
       ).listen('.send.message', (e) => {
 
         window.Livewire.emit('typingMessage', e.message, e.user, friend);
+      
         const chatboxs = document.getElementById('chatbox');
-        const scrollHeightb = chatboxs.scrollHeight - Math.round(chatboxs.scrollTop -20) === chatboxs.clientHeight;
-        const scrollBottom = chatboxs.scrollHeight - chatboxs.scrollTop - chatboxs.clientHeight
-        if (!scrollHeightb) {
+        // const scrollHeightb = chatboxs.scrollHeight - Math.round(chatboxs.scrollTop) === chatboxs.clientHeight;
+        // const scrollBottom = chatboxs.scrollHeight - chatboxs.scrollTop - chatboxs.clientHeight
 
-          chatboxs.scrollTop = chatboxs.scrollHeight;
+        // if (!scrollBottom) {
+        //   chatboxs.scrollTop = chatboxs.scrollHeight;
+        const taill = document.getElementsByClassName("message");
+      
+      
+        // }
+       chatboxs.scrollTop = chatboxs.scrollHeight ;
+        // const taills =  document.querySelectorAll('.message');
+        // taills.forEach(tail => {
+        //   tail.scrollIntoView({ behavior: 'smooth' });
+         
+        // }
+        // );
+     
+       
 
-          window.getComputedStyle(chatboxs).overflowY === 'visible'
-          window.getComputedStyle(chatboxs).overflowY !== 'hidden'
-          console.log(getComputedStyle(chatboxs).height);
+       
+        // window.getComputedStyle(chatboxs).overflowY === 'visible'
+        // window.getComputedStyle(chatboxs).overflowY !== 'hidden'
+         console.log(getComputedStyle(chatboxs).height);
 
-        }
-        if (scrollBottom > 0) {
-          chatboxs.scrollTop = chatboxs.scrollHeight;
-        }
-        console.log(scrollHeightb);
+
+
+        // console.log(chatboxs.scrollHeight);
 
       }
       ).listenForWhisper('typing', (e) => {
@@ -122,6 +138,8 @@ const getEvents = async () => {
 
 }
 getEvents();
+
+
 
 // window.addEventListener('DOMContentLoaded', function () {
 //   window.Echo.private('private.send.invitation'+window.App.user)
