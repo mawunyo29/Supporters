@@ -11,7 +11,7 @@
                x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
                x-transition:leave="transform transition ease-in-out duration-500 sm:duration-700"
                x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full"
-               class="w-screen max-w-5xl " x-description="Slide-over panel, show/hide based on slide-over state."
+               class="w-screen max-w-4xl " x-description="Slide-over panel, show/hide based on slide-over state."
                style="display: none">
                <div class="flex flex-col h-full py-6 mb-5 bg-gray-200 shadow-xl scrollbar dark:bg-gray-700">
                   <div class="px-4 sm:px-6 ">
@@ -45,22 +45,81 @@
                         </div>
                      </div>
                   </div>
-                  <div class="relative flex-1 px-4 mt-5 sm:px-6">
+                  <div class="relative flex-1 px-4 mt-5 sm:px-6 overflow-auto scrollbar" id="chatbox">
+                     {{-- chatbox --}}
+                     <div class="chat_div flex flex-row rounded-md  p-1 absolute inset-0">
+                        <div
+                           class="nav_slide  bg-gray-900 text-purple-lighter flex-none w-24 p-6 hidden md:block rounded-l-md overflow-y-scroll scrollbar relative ">
+                         
+
+                           <div class="cursor-pointer mb-4 border-b border-gray-600 pb-2 sticky top-0">
+                              <div
+                                 class="bg-white h-12 w-12 flex items-center justify-center text-black text-2xl font-semibold rounded-3xl mb-1 overflow-hidden">
+                                 <img src="https://cdn.discordapp.com/embed/avatars/0.png" alt="">
+                              </div>
+                           </div>
+
+                        </div>
+                        <div class="flex flex-col  pb-6 w-64 overflow-hidden  relative bg-gray-800">
+                           <div
+                              class=" friend_slide bg-gray-800 text-purple-lighter flex-none w-full  hidden md:block  overflow-y-scroll scrollbar ">
+                              <div
+                                 class="text-white  mt-3 px-4 flex justify-between border-b border-gray-600 py-1 shadow-xl fixed w-64 ">
+                                 <div class="flex-auto">
+                                    <h1 class="font-semibold text-xl leading-tight mb-1 truncate">My Server
+                                    </h1>
+                                 </div>
+                                 <div>
+                                    <svg class="arrow-gKvcEx icon-2yIBmh opacity-50 cursor-pointer" width="24"
+                                       height="24" viewBox="0 0 24 24">
+                                       <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M16.59 8.59004L12 13.17L7.41 8.59004L6 10L12 16L18 10L16.59 8.59004Z">
+                                       </path>
+                                    </svg>
+                                 </div>
+                              </div>
+
+
+                           </div>
+                           <div class="absolute w-full m-0 h-20 bg-gray-600  bottom-0">
+                              <div class=" absolute  ">
+                                 <span> non</span>
+
+                              </div>
+                           </div>
+                        </div>
+                        <div
+                           class="messages rounded-r-md bg-slate-900 w-full inset-x-0 flex-grow relative flex-1 scrollbar ">
+                           <div
+                              class="messages_div  text-purple-lighter flex-none w-full pb-6  hidden md:block  ">
+                              <div
+                                 class="text-white mb-2 mt-3 px-4 flex justify-between border-b border-gray-600 py-1 shadow-xl">
+                                 <div class="flex-auto">
+                                    <h1 class="font-semibold text-xl leading-tight mb-1 truncate">My Server
+                                    </h1>
+                                 </div>
+                                 <div>
+                                    <svg class="arrow-gKvcEx icon-2yIBmh opacity-50 cursor-pointer" width="24"
+                                       height="24" viewBox="0 0 24 24">
+                                       <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"
+                                          d="M16.59 8.59004L12 13.17L7.41 8.59004L6 10L12 16L18 10L16.59 8.59004Z">
+                                       </path>
+                                    </svg>
+                                 </div>
+                              </div>
+                              <div class="general border-b-slate-700 ">
+                                 Messages
+                              </div>
+                           </div>
+
+
+                        </div>
+
+                     </div>
                      <!-- Replace with your content -->
 
-                     <div class="absolute inset-0">
-                        {{-- {{$i%2==0?'border-l-green-300
-                        ring-green-400':($i%3==0?'border-l-blue-300':'border-l-pink-300')}}
-                        <ul class="px-2">
-                           <li class="my-2 border-l-2 rounded-lg shadow-md border-b-gray-300 ring-2 dark:bg-gray-700 ">
-                              <img class="w-8 h-8 rounded-full"
-                                 src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
-                                 alt="">
-                              <p class="items-center p-1 text-justify-center">
-                                 {{$taping}}</p>
-                           </li>
+                     {{-- <div class="absolute inset-0">
 
-                        </ul> --}}
                         <div class="flex flex-row  max-h-[800px] ">
                            <div class="w-20 bg-gray-300 flex  absolute inset-y-0 left-0 dark:bg-gray-600">
                               <div class="flex flex-col items-center px-2 py-1 ">
@@ -161,13 +220,13 @@
 
                         </div>
 
+                     </div> --}}
+                     <!-- /End replace -->
 
-                        <!-- /End replace -->
-                     </div>
 
                   </div>
 
-                  <div class="relative -mt-10 bg-gray-200">
+                  {{-- <div class="relative -mt-10 bg-gray-200">
 
                      <div class="container absolute bottom-0 flex flex-col pt-10 mx-auto">
                         <div class="px-1">
@@ -192,7 +251,7 @@
                         </div>
 
                      </div>
-                  </div>
+                  </div> --}}
 
                </div>
 
@@ -202,3 +261,4 @@
 
       </div>
    </div>
+</div>

@@ -18,7 +18,7 @@ body {
   overscroll-behavior: none;
 }
 .widthcal{
-  width: calc(100% - 22rem);
+  width: calc(100% - 80px);
   
 }
 @keyframes rotaionglobe {

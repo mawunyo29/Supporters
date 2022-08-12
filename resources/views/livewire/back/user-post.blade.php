@@ -57,8 +57,8 @@
 
       </div>
       <div class="bg-gray-800 text-purple-lighter flex-none w-64 pb-6 hidden md:block h-[800px] overflow-y-scroll">
-         <div class="text-white mb-2 mt-3 px-4 flex justify-between border-b border-gray-600 py-1 shadow-xl">
-            <div class="flex-auto">
+         <div class="text-white mb-2 mt-3 px-4 flex justify-between border-b border-gray-600 py-1 shadow-xl sticky top-0 bg-gray-800">
+            <div class="flex-auto ">
                <h1 class="font-semibold text-xl leading-tight mb-1 truncate">My Server
                </h1>
             </div>
