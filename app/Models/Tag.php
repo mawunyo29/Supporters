@@ -21,7 +21,7 @@ class Tag extends Model
      */
     public function taggable()
     {
-        return $this->morphTo();
+        return $this->morphTo(__FUNCTION__, 'taggable_type', 'taggable_id');
     }
 
 }

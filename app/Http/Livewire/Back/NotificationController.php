@@ -29,7 +29,6 @@ class NotificationController extends Component
      */
     public function updatedAcceptRequest()
     {
-
         $data = [
             'user_id' => $this->user->id,
             'friend_id' =>$this->user_to_add->id, 

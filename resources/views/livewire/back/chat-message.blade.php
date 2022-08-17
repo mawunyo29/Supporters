@@ -78,7 +78,7 @@
                                     </svg>
                                  </div>
                               </div>
-                              
+
 
                            </div>
                            <div class="absolute w-full  bg-gray-700  bottom-0 p-2">
@@ -86,7 +86,8 @@
                                  <div class="hover:bg-slate-400 p-1 flex items-center rounded-md basis-1/2">
                                     <span>1</span>
                                  </div>
-                                 <div class="flex flex-row justify-evenly first-letter basis-1/2 hover:bg-gray-700 space-x-1">
+                                 <div
+                                    class="flex flex-row justify-evenly first-letter basis-1/2 hover:bg-gray-700 space-x-1">
                                     <div class="setting hover:bg-slate-400 p-1 flex items-center rounded-md ring">
                                        <x-icons.icon class="icon text-white " icon="mic"></x-icons.icon>
                                     </div>
@@ -106,7 +107,7 @@
                            class=" rounded-r-md bg-slate-900 w-full  flex-grow relative flex-1 scrollbar overflow-hidden">
 
                            <div
-                              class="messages_div  text-purple-lighter flex-none w-full  absolute top-0 z-50 bg-slate-900 ">
+                              class="messages_div  text-purple-lighter flex-none w-full  absolute top-0 z-40 bg-slate-900 ">
                               <div
                                  class="text-white mb-2 mt-3 px-4 flex justify-between border-b border-gray-600 py-1 shadow-xl  w-full">
                                  <div class="flex-auto">
@@ -130,12 +131,12 @@
                                  class=" messages relative  w-full  flex flex-col   rounded-t-lg dark:bg-gray-700 right-0 {{$taping?'block':'hidden' }}  overflow-y-scroll scrollbar"
                                  id="chatbox">
                                  @if (count($messages) > 0)
-                                 <div class=" absolute bottom-0 min-h-0 h-20 
+                                 <div class=" absolute bottom-0 min-h-0 h-20  
                                    w-full" id="message_content">
                                     @foreach ($messages as $currentMessage)
                                     @if ($currentMessage['user']['id'] == $user->id)
                                     <div
-                                       class="border-b border-gray-600 p-1 flex items-start mb-0 text-sm hover:bg-gray-500"
+                                       class="border-b border-gray-600 p-1 flex items-start mb-0 text-sm hover:bg-gray-600 px-5 rounded-md"
                                        id="message.{{md5($loop->index)}}">
                                        @if ($currentMessage['user']['avatar'])
                                        <img src="{{ $currentMessage['user']['avatar'] }}"
@@ -211,7 +212,7 @@
                                        </div>
                                     </div> --}}
                                     <div
-                                       class="border-b border-gray-600 p-1 flex items-start mb-0 text-sm hover:bg-gray-700 bg-gray-500 "
+                                       class="border-b border-gray-600 p-1 flex items-start mb-0 text-sm hover:bg-gray-700 bg-gray-500 px-5 rounded-md"
                                        id="message.{{md5($loop->index)}}">
                                        @if ($currentMessage['user']['avatar'])
                                        <img src="{{ $currentMessage['user']['avatar'] }}"
@@ -238,12 +239,39 @@
 
                               </div>
 
+                              <div class=" fixed   md:w-1/4  z-50 right-2 bottom-32 ">
+                                 <div
+                                    class="  bg-white rounded-md hover:outline-none hover:ring-4 p-1 hover:ring-green-300 h-96 overflow-y-scroll">
 
+                                    <ul class="emotions flex flex-wrap flex-col flex-grow w-full divide-y-1">
+                                       @foreach ($UNI_CODE as $key=> $emotion)
+                                       <li class="text-gray-300 text-xl ring-1 p-1  mb-2">
+                                          <h1 class="text-base mb-2 text-gray-700  uppercase">{{str_replace("_"," ",$key)}}</h1>
+                                          @foreach ($emotion as $item)
+                                          @if ($key)
+
+                                          <span class="text-lg ">{{$item}}</span>
+
+                                          @endif
+                                          @endforeach
+                                       </li>
+
+                                       @endforeach
+
+                                    </ul>
+
+                                 </div>
+
+                              </div>
                            </div>
+
+                           {{-- unicode emoji --}}
+
 
                            <div class="container absolute  bottom-0 flex flex-col  mx-auto overflow-hidden  rounded-md">
 
-                              <div class=" overflow-hidden mx-5 py-1 ">
+
+                              <div class=" overflow-hidden md:mx-5 py-1 mx-2">
                                  <div
                                     class="flex w-full  bg-gray-700 rounded-lg b ring-2 dark:bg-gray-600 overflow-hidden p-1 hover:bg-gray-500  ">
 
@@ -251,10 +279,17 @@
                                        class="inline-flex items-center px-1 text-gray-900 bg-gray-200 border border-r-0 border-gray-300 rounded-l-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600"
                                        icon="data_saver_on"></x-icons.icon>
                                     <input type="text" id="inputMessage" wire:model='message'
-                                       wire:change="chatMessage($event.target.value)"
+                                       wire:keydown.enter="sendMessage()"
                                        class="rounded-none  bg-gray-50  text-gray-900  focus:border-transparent block flex-1 min-w-0 text-sm py-2.5  dark:bg-gray-700 dark:border-transparent dark:placeholder-gray-400 dark:text-white  appearance-non flex-wrap text-justify overflow-hidden "
                                        placeholder="message">
-                                    <span class="inline-flex items-center px-3">icon</span>
+                                    {{-- <button>
+                                       <span class="inline-flex items-center px-3 text-xl">{{$face}}</span>
+                                    </button> --}}
+                                    <div class="inline-flex items-center">
+                                       <button type="button"
+                                          class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-5 py-2 mx-2  dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700   text-xl">{{$face}}</button>
+                                    </div>
+
                                  </div>
                                  <div class="left-0 right-0 w-full   ">
                                     <div id="typingMessage"

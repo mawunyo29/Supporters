@@ -20,7 +20,7 @@ class Comment extends Model
      
      public function commentable()
      {
-         return $this->morphTo();
+         return $this->morphTo(__FUNCTION__, 'commentable_type', 'commentable_id');
      }
 
 

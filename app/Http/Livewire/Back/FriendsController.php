@@ -123,16 +123,11 @@ class FriendsController extends Component
 
             if ($allready_sent != null) {
                 redirect()->to('/dashboard')->with('error', 'You have already sent a request to this user');
-            } else {
-               
- 
-                
+            } else {  
                  event(new SendInvitationEvent($this->user, $this->auth_user, $this->message));
              redirect()->to('/dashboard')->with('success', 'Request sent successfully');
 
-                $this->is_open_send_invitation = false;
-                
-                
+                $this->is_open_send_invitation = false;   
             }
         } catch (ThrottlesExceptions $e) {
             # code...

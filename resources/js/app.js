@@ -76,34 +76,8 @@ const getEvents = async () => {
       ).listen('.send.message', (e) => {
 
         window.Livewire.emit('typingMessage', e.message, e.user, friend);
-
-        // const chatboxs = document.getElementById('chatbox');
-        // const scrollHeightb = chatboxs.scrollHeight - Math.round(chatboxs.scrollTop) === chatboxs.clientHeight;
-        // const scrollBottom = chatboxs.scrollHeight - chatboxs.scrollTop - chatboxs.clientHeight
-
-        // if (!scrollBottom) {
-        //   chatboxs.scrollTop = chatboxs.scrollHeight;
         const taill = document.getElementsByClassName("message");
-
-       
-        // }
-
-        // const taills =  document.querySelectorAll('.message');
-        // taills.forEach(tail => {
-        //   tail.scrollIntoView({ behavior: 'smooth' });
-
-        // }
-        // );
-
          initscroll();
-
-        // window.getComputedStyle(chatboxs).overflowY === 'visible'
-        // window.getComputedStyle(chatboxs).overflowY !== 'hidden'
-
-
-
-
-        // console.log(chatboxs.scrollHeight);
 
       }
       ).listenForWhisper('typing', (e) => {
@@ -152,8 +126,6 @@ const initscroll = () => {
   chatboxs.scrollTop = chatboxs.scrollHeight;
 }
 
-
-// setInterval(initscroll, 1000);
 document.addEventListener('typingMessage', () => {
  
   initscroll();

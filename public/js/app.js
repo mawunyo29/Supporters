@@ -5101,22 +5101,9 @@ var getEvents = /*#__PURE__*/function () {
                     'user leaving': user
                   });
                 }).listen('.send.message', function (e) {
-                  window.Livewire.emit('typingMessage', e.message, e.user, friend); // const chatboxs = document.getElementById('chatbox');
-                  // const scrollHeightb = chatboxs.scrollHeight - Math.round(chatboxs.scrollTop) === chatboxs.clientHeight;
-                  // const scrollBottom = chatboxs.scrollHeight - chatboxs.scrollTop - chatboxs.clientHeight
-                  // if (!scrollBottom) {
-                  //   chatboxs.scrollTop = chatboxs.scrollHeight;
-
-                  var taill = document.getElementsByClassName("message"); // }
-                  // const taills =  document.querySelectorAll('.message');
-                  // taills.forEach(tail => {
-                  //   tail.scrollIntoView({ behavior: 'smooth' });
-                  // }
-                  // );
-
-                  initscroll(); // window.getComputedStyle(chatboxs).overflowY === 'visible'
-                  // window.getComputedStyle(chatboxs).overflowY !== 'hidden'
-                  // console.log(chatboxs.scrollHeight);
+                  window.Livewire.emit('typingMessage', e.message, e.user, friend);
+                  var taill = document.getElementsByClassName("message");
+                  initscroll();
                 }).listenForWhisper('typing', function (e) {
                   typingMessage.textContent = e.user + ' is typing';
                   typingMessage.classList.remove('hidden');
@@ -5163,8 +5150,7 @@ var isScrolledToBottom = function isScrolledToBottom() {
 var initscroll = function initscroll() {
   isScrolledToBottom;
   chatboxs.scrollTop = chatboxs.scrollHeight;
-}; // setInterval(initscroll, 1000);
-
+};
 
 document.addEventListener('typingMessage', function () {
   initscroll();

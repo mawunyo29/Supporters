@@ -55,6 +55,20 @@ class Friend extends Model
         
         return $this->hasMany(FriendUser::class);
     }
+    /**
+     * sender
+     */
+    public function sender()
+    {
+        return $this->belongsTo(User::class, 'sender_id');
+    }
+    /**
+     * receiver
+     */
+    public function receiver()
+    {
+        return $this->belongsTo(User::class, 'receiver_id');
+    }
 
     
     /**
@@ -104,9 +118,9 @@ class Friend extends Model
     /**
      * friend request send notification
      */
-    public function sendFriendRequestNotification()
+    public function sendFriendRequestNotification($user, $message)
     {
-        $this->notify(new FriendInviteNotification($this->user));
+        $this->notify(new FriendInviteNotification($user, $message));
     }
     public function notification()
     {
@@ -147,6 +161,18 @@ class Friend extends Model
     {
         $this->user_id = $user_id;
         $this->save();
+    }
+
+    /**
+     * Get user's friend.
+     */
+    public static function getUserFriend($user_id)
+    {
+        return self::where(function($query) use ($user_id){
+            $query->where('sender_id', $user_id)
+                ->orWhere('receiver_id', $user_id);
+        })->where('is_accept', 1)->get();
+       
     }
 
 

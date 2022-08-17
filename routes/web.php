@@ -1,6 +1,7 @@
 <?php
 
 use App\Events\SendInvitationEvent;
+use App\Http\Livewire\Back\ChatMessage;
 use App\Http\Livewire\Back\FriendsController;
 use App\Http\Livewire\Back\NotificationComponents\CountUnReadNotification;
 use App\Http\Livewire\Back\SocialiteConnexion;
@@ -48,6 +49,7 @@ Route::middleware([
         Route::get('/search', SearchController::class)->name('search');
         Route::get('/users/{user:slug}', ShowFriends::class)->name('friend');
         Route::match(['get', 'post'], '/posts/users/{user:slug}',UserPost::class)->name('posts.index');
+        Route::post('/messages/message/user/{id}',[ChatMessage::class ,'chatMessage'])->name('message');
     });
     Route::get('/auth/user',function(User $user ,Friend $friend){
             $this->user = auth()->check() ? auth()->user() : null;
@@ -59,6 +61,7 @@ Route::middleware([
             return $data;
 
         })->name('auth');
+       
         
     Livewire::component('count-un-read-notifaction', CountUnReadNotification::class);
 });
