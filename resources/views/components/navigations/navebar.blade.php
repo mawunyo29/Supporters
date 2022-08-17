@@ -1,6 +1,6 @@
 @props(['chat_modal'=>true])
 <?php
-    $chat_modal = $chat_modal ?? true;
+    $chat_modal = $chat_modal ?? false;
 ?>
 <div x-data="{ open:'{{$chat_modal}}' ,right_nav:false}" >
   <nav class="container mx-auto overflow-hidden sm:px-6 lg:px-8">

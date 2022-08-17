@@ -96,6 +96,7 @@ body {
 }
 .scrollbar::-webkit-scrollbar {
   width: 0;
+  
 }
 .chat-bubble {
   background-color:#E6F8F1;
@@ -115,7 +116,7 @@ body {
 }
 .typing .dot {
   animation: mercuryTypingAnimation 1.8s infinite ease-in-out;
-  background-color: #6CAD96 ; /*rgba(20,105,69,.7)*/;
+  background-color: var(--vert); /*rgba(20,105,69,.7)*/;
   border-radius: 50%;
   height: 7px;
   margin-right: 4px;
@@ -151,8 +152,23 @@ body {
     background-color: #B5D9CB; /*rgba(20,105,69,.2)*/;
   }
 }
-.message{
+.messages {
+  height: 88.33%;
   
-  overflow: auto;
- overscroll-behavior: contain;
+  
+}
+.messages::-webkit-scrollbar-track{
+  background-color: #6CAD96;
+}
+.messages::-webkit-scrollbar-thumb{
+  background-color: #9f9eca;
+}
+.messages::-webkit-scrollbar-thumb:hover{
+  background-color: #9ECAB9;
+}
+
+:root{
+  --rouge: #FF0000;
+  --vert: #00FF00;
+  --bleu: #0000FF;
 }

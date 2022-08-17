@@ -26,13 +26,13 @@ const getEvents = async () => {
 
     const inputMessage = document.getElementById('inputMessage');
     const typingMessage = document.getElementById('typingMessage');
-
+   
     inputMessage.addEventListener('input', function (e) {
 
       messagechannel.forEach(channel => {
 
 
-        if (inputMessage.value.length === 0) {
+        if (inputMessage.value.length === 0 || e.keyCode === 13) {
 
           channel.whisper('stop-typing');
 
@@ -44,7 +44,7 @@ const getEvents = async () => {
           });
         }
       });
-    });
+    }.bind(this));
 
 
     invitationchannel.subscribed(() => {
@@ -66,41 +66,40 @@ const getEvents = async () => {
       }
       ).joining((user) => {
         console.log({ 'user  joinning': user });
-       
+
       }
       ).leaving((user) => {
         console.log({ 'user leaving': user });
-      
+
 
       }
       ).listen('.send.message', (e) => {
 
         window.Livewire.emit('typingMessage', e.message, e.user, friend);
-      
-        const chatboxs = document.getElementById('chatbox');
+
+        // const chatboxs = document.getElementById('chatbox');
         // const scrollHeightb = chatboxs.scrollHeight - Math.round(chatboxs.scrollTop) === chatboxs.clientHeight;
         // const scrollBottom = chatboxs.scrollHeight - chatboxs.scrollTop - chatboxs.clientHeight
 
         // if (!scrollBottom) {
         //   chatboxs.scrollTop = chatboxs.scrollHeight;
         const taill = document.getElementsByClassName("message");
-      
-      
+
+       
         // }
-       chatboxs.scrollTop = chatboxs.scrollHeight ;
+
         // const taills =  document.querySelectorAll('.message');
         // taills.forEach(tail => {
         //   tail.scrollIntoView({ behavior: 'smooth' });
-         
+
         // }
         // );
-     
-       
 
-       
+         initscroll();
+
         // window.getComputedStyle(chatboxs).overflowY === 'visible'
         // window.getComputedStyle(chatboxs).overflowY !== 'hidden'
-         console.log(getComputedStyle(chatboxs).height);
+
 
 
 
@@ -128,7 +127,7 @@ const getEvents = async () => {
       }
       );
     });
-
+   
 
   }).catch(err => {
 
@@ -138,6 +137,30 @@ const getEvents = async () => {
 
 }
 getEvents();
+
+ const chatboxs = document.getElementById('chatbox');
+const isScrolledToBottom = () => {
+  const scrollHeight = chatboxs.scrollHeight;
+  const scrollTop = chatboxs.scrollTop;
+  const clientHeight = chatboxs.clientHeight;
+
+  return scrollHeight - scrollTop === clientHeight;
+}
+
+const initscroll = () => {
+  isScrolledToBottom 
+  chatboxs.scrollTop = chatboxs.scrollHeight;
+}
+
+
+// setInterval(initscroll, 1000);
+document.addEventListener('typingMessage', () => {
+ 
+  initscroll();
+}
+);
+
+
 
 
 
