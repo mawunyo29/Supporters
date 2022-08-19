@@ -172,3 +172,8 @@ body {
   --vert: #00FF00;
   --bleu: #0000FF;
 }
+.chat_text{
+  font-family: 'Tangerine', serif;
+  font-size: 30px;
+  text-shadow: 4px 4px 4px #aaa;
+}

@@ -4,8 +4,77 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "312a04c48b38094a01eccac673bc0f64",
+    "content-hash": "482ef25cdd702848e325d32e37fb5dba",
     "packages": [
+        {
+            "name": "andkab/laravel-joypixels",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/andkab/laravel-joypixels.git",
+                "reference": "ffbb759bbac99a957d8e66bdeb225c6ecfa6a059"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/andkab/laravel-joypixels/zipball/ffbb759bbac99a957d8e66bdeb225c6ecfa6a059",
+                "reference": "ffbb759bbac99a957d8e66bdeb225c6ecfa6a059",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.5|^6|^7|^8|^9",
+                "joypixels/emoji-toolkit": "^6",
+                "php": ">=7.0"
+            },
+            "suggest": {
+                "joypixels/assets": "If you want to serve the emojione assets yourself"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "andkab\\LaravelJoyPixels\\LaravelJoyPixelsServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelJoyPixels": "andkab\\LaravelJoyPixels\\LaravelJoyPixelsFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "andkab\\LaravelJoyPixels\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Andrew Frost",
+                    "email": "andkab2012@gmail.com",
+                    "homepage": "https://andkab.best",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel helper for Joypixels, EmojiOne",
+            "homepage": "https://github.com/andkab/laravel-joypixels",
+            "keywords": [
+                "ChristofferOK",
+                "JoyPixels",
+                "LaravelEmojiOne",
+                "LaravelJoyPixels",
+                "andkab",
+                "andrew_frost",
+                "emoji",
+                "emojione",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/andkab/laravel-joypixels/issues",
+                "source": "https://github.com/andkab/laravel-joypixels/tree/1.0.4"
+            },
+            "time": "2022-02-25T23:43:59+00:00"
+        },
         {
             "name": "asm89/stack-cors",
             "version": "v2.1.1",
@@ -1493,6 +1562,55 @@
                 }
             ],
             "time": "2020-06-13T08:05:20+00:00"
+        },
+        {
+            "name": "joypixels/emoji-toolkit",
+            "version": "6.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joypixels/emoji-toolkit.git",
+                "reference": "99f960c37eef1bdd0a3e30a676f8839c88e48ce3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joypixels/emoji-toolkit/zipball/99f960c37eef1bdd0a3e30a676f8839c88e48ce3",
+                "reference": "99f960c37eef1bdd0a3e30a676f8839c88e48ce3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.6 || ~5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "JoyPixels\\": "lib/php/src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "(CC-BY-4.0 and MIT)"
+            ],
+            "description": "JoyPixels is a complete set of emoji designed for the web. The emoji-toolkit includes libraries to easily convert unicode characters to shortnames (:smile:) and shortnames to JoyPixels emoji images. PNG formats provided for the emoji images.",
+            "homepage": "http://www.joypixels.com",
+            "keywords": [
+                "JoyPixels",
+                "emoji",
+                "emoji-toolkit",
+                "emojione",
+                "emojis",
+                "emoticons",
+                "smileys",
+                "smilies",
+                "unicode"
+            ],
+            "support": {
+                "issues": "https://github.com/joypixels/emoji-toolkit/issues",
+                "source": "https://github.com/joypixels/emoji-toolkit/tree/6.6.0"
+            },
+            "time": "2021-07-08T22:11:29+00:00"
         },
         {
             "name": "laravel/fortify",
@@ -4976,72 +5094,6 @@
                 "source": "https://github.com/ringcentral/psr7/tree/master"
             },
             "time": "2018-05-29T20:21:04+00:00"
-        },
-        {
-            "name": "spatie/emoji",
-            "version": "3.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/spatie/emoji.git",
-                "reference": "69ff9c675d9a732319bf3f6c2d705f376ee7935f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/spatie/emoji/zipball/69ff9c675d9a732319bf3f6c2d705f376ee7935f",
-                "reference": "69ff9c675d9a732319bf3f6c2d705f376ee7935f",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "php": "^7.2|^8.0"
-            },
-            "require-dev": {
-                "ext-iconv": "*",
-                "ext-json": "*",
-                "guzzlehttp/guzzle": "^7.0",
-                "phpunit/phpunit": "^9.4",
-                "symfony/console": "^4.2",
-                "twig/twig": "^2.7"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Spatie\\Emoji\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Freek Van der Herten",
-                    "email": "freek@spatie.be",
-                    "homepage": "https://spatie.be",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Display emoji characters",
-            "homepage": "https://github.com/spatie/emoji",
-            "keywords": [
-                "emoji",
-                "spatie"
-            ],
-            "support": {
-                "issues": "https://github.com/spatie/emoji/issues",
-                "source": "https://github.com/spatie/emoji/tree/3.0.0"
-            },
-            "funding": [
-                {
-                    "url": "https://spatie.be/open-source/support-us",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/spatie",
-                    "type": "github"
-                }
-            ],
-            "time": "2021-09-27T17:14:27+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

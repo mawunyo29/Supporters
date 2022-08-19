@@ -18,7 +18,7 @@
                      <div class="flex items-start justify-between ">
                         <h2 class="text-lg font-medium text-gray-900 dark:text-white" id="slide-over-title">
                            Discussions
-                           <ul class=" space-x-2 border-b-gray-400 flex flex-row ">
+                           <ul class=" space-x-2 border-b-gray-400 flex flex-row chat_text">
                               @foreach ($current_user_join_or_leave as $item)
                               <li>
                                  {{$item}}
@@ -242,23 +242,25 @@
                               <div class=" fixed   md:w-1/4  z-50 right-2 bottom-32 ">
                                  <div
                                     class="  bg-white rounded-md hover:outline-none hover:ring-4 p-1 hover:ring-green-300 h-96 overflow-y-scroll">
-
-                                    <ul class="emotions flex flex-wrap flex-col flex-grow w-full divide-y-1">
-                                       @foreach ($UNI_CODE as $key=> $emotion)
+                                   
+                                    <ul class="emotions flex flex-wrap  flex-grow w-full divide-y-1">
+                                       @foreach ($data as  $emotion)
                                        <li class="text-gray-300 text-xl ring-1 p-1  mb-2">
-                                          <h1 class="text-base mb-2 text-gray-700  uppercase">{{str_replace("_"," ",$key)}}</h1>
-                                          @foreach ($emotion as $item)
-                                          @if ($key)
+                                          {{-- <h1 class="text-base mb-2 text-gray-700  uppercase">{{
+                                             $emotion[2]}}</h1> --}}
+                                          
+                                        
 
-                                          <span class="text-lg ">{{$item}}</span>
+                                          <span class="text-lg ">{!!$emotion !!}</span>
 
-                                          @endif
-                                          @endforeach
+                                        
+                                          
                                        </li>
 
                                        @endforeach
 
                                     </ul>
+                                  
 
                                  </div>
 

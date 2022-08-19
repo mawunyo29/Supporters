@@ -2,11 +2,12 @@
 
 namespace App\Http\Livewire\Back;
 
+use andkab\LaravelJoyPixels\LaravelJoyPixels;
 use App\Events\SendMessageEvent;
 use App\Models\User;
+use Illuminate\Support\Collection;
 use Livewire\Component;
-use Spatie\Emoji\Emoji;
-use Spatie\Emoji\Generator\Emoji as GeneratorEmoji;
+
 
 use function PHPSTORM_META\map;
 
@@ -25,11 +26,14 @@ class ChatMessage extends Component
     public $current_user_join_or_leave = [];
     public $current_friend;
     public $users = [];
+    public  Collection $emojis;
+
 
 
     public function mount($user)
     {
         $this->user = $user;
+        $this->emojis=collect([]);
     }
     //     protected $listeners = ["sendNotification" => 'notifyNewUser',
     //     'typingMessage','getFriendById'
@@ -119,6 +123,8 @@ class ChatMessage extends Component
     public  $UNI_CODE = [
         'facce_smiling' => [
             'grinning' => '😀',
+            'grinning_face_with_big_eyes' => '😃',
+            'face_with_smiling_eyes' => "\u{1F604}",
             'smiling' => '😊',
             'smiling_eyes' => '😉',
             'sad' => '😔',
@@ -146,27 +152,64 @@ class ChatMessage extends Component
         ],
         'face_glasses' => [
             'sunglasses' => '😎',
-            'nerd_face' =>'🤓',
+            'nerd_face' => '🤓',
 
         ],
-        'upside_down_face'=>[
-            'down1'=>'🙃',
-            'down2'=>'🙃',
-            'down3'=>'🙃',
+        'upside_down_face' => [
+            'down1' => '🙃',
+            'down2' => '🙃',
+            'down3' => '🙃',
+        ],
+        'SUBDIVISION_FLAG' => [
+            'flag1' => '🏁',
+            'flag2' => '🚩',
+            'flag3' => '🎌',
+            'flag4' => '🏴',
+            'flag5' => '🏳️',
+            'flag6' => '🏳️‍🌈',
+            'flag7' => '🏴‍☠️',
+            'CHARACTER_FLAGS_FOR_FLAG_ENGLAND' => "\u{1F3F4}\u{E0067}\u{E0062}\u{E0065}\u{E006E}\u{E0067}\u{E007F}",
+            'CHARACTER_FLAGS_FOR_FLAG_SCOTLAND' => "\u{1F3F4}\u{E0067}\u{E0062}\u{E0073}\u{E0063}\u{E0074}\u{E007F}",
+            'CHARACTER_FLAGS_FOR_FLAG_WALES' => "\u{1F3F4}\u{E0067}\u{E0062}\u{E0077}\u{E006C}\u{E0073}\u{E007F}"
+        ],
+        'COUNTRY_FLAG' => [
+            ' FLAG_ASCENSION_ISLAND' => "\u{1F1E6}\u{1F1E8}",
+
         ],
 
 
     ];
+
+    public  $CATEGORY_ICONS = [
+        'activity' => '🏃',
+        'animals_and_nature' => '🐶',
+        'diversity' => '👨‍👩‍👧‍👦',
+        'flags' => '🏁',
+        'food_and_drink' => '🍔',
+        'objects' => '📱',
+        'people' => '👨',
+        'symbols' => '💯',
+        'travel_and_places' => '🚗',
+
+    ];
+
+    public function geEmoji()
+    {
+        $emojis = LaravelJoyPixels::getClient()->getRuleset()->getShortcodeReplace();
+    
+        foreach ($emojis as $key => $emoji) {
+            $this->emojis->push( [$key=>$emoji]) ;
+            $data[] = LaravelJoyPixels::getClient()->shortnameToImage($key);
+        }
+
+        return $data;
+    }
     public function render()
     {
-        $face = Emoji::CHARACTER_SMILING_FACE_WITH_SUNGLASSES;
-
-        $emotionall = Emoji::all();
 
 
-        $emotions = collect($emotionall)->map(function ($item, $key) {
-            return $key;
-        });
-        return view('livewire.back.chat-message', compact('face', 'emotions'));
+        $data = $this->geEmoji();
+        $face = '😎';
+        return view('livewire.back.chat-message', compact('face', 'data'));
     }
 }
