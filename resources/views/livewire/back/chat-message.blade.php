@@ -152,7 +152,8 @@
                                                 $currentMessage['user']['name'] }}</span>
                                              <span class="font-bold text-gray-400 text-xs"> {{ now() }}</span>
                                           </div>
-                                          <p class="text-white leading-normal"> {{ $currentMessage['message'] }}</p>
+                                          <p class="text-white leading-normal" id="message"> {!!
+                                             htmlspecialchars($currentMessage['message']) !!}</p>
                                        </div>
                                     </div>
                                     {{-- <div
@@ -227,7 +228,8 @@
                                                 $currentMessage['user']['name'] }}</span>
                                              <span class="font-bold text-gray-400 text-xs"> {{ now() }}</span>
                                           </div>
-                                          <p class="text-white leading-normal"> {{ $currentMessage['message'] }}</p>
+                                          <p class="text-white leading-normal" id="message"> {!!
+                                             htmlspecialchars($currentMessage['message']) !!}</p>
                                        </div>
                                     </div>
                                     @endif
@@ -239,33 +241,36 @@
 
                               </div>
 
-                              <div class=" fixed   md:w-1/4  z-50 right-2 bottom-32 ">
-                                 <div
-                                    class="  bg-white rounded-md hover:outline-none hover:ring-4 p-1 hover:ring-green-300 h-96 overflow-y-scroll">
-                                   
-                                    <ul class="emotions flex flex-wrap  flex-grow w-full divide-y-1">
-                                       @foreach ($data as  $emotion)
-                                       <li class="text-gray-300 text-xl ring-1 p-1  mb-2">
-                                          {{-- <h1 class="text-base mb-2 text-gray-700  uppercase">{{
-                                             $emotion[2]}}</h1> --}}
-                                          
-                                        
+                              <div class=" fixed   md:w-1/4   right-2 bottom-32 " id="emojis">
+                                 <form>
+                                    @csrf
+                                    <div
+                                       class="  bg-white rounded-md hover:outline-none hover:ring-4 p-1 hover:ring-green-300 md:h-96 h-80 overflow-y-scroll">
 
-                                          <span class="text-lg ">{!!$emotion !!}</span>
-
-                                        
-                                          
-                                       </li>
-
-                                       @endforeach
-
-                                    </ul>
-                                  
-
-                                 </div>
-
+                                       <ul
+                                          class="emotions flex flex-wrap flex-col items-center  flex-grow w-full divide-y-1">
+                                          @foreach (($data) as $key=> $emotions)
+                                          <h1 class="text-base mb-2 text-gray-700  text-center uppercase">{{ $key}}</h1>
+                                          <li class="text-gray-300 text-xl ring-1 p-1  mb-2 flex flex-wrap flex-row w-full  items-center justify-between  "
+                                             wire:key="emotions.{{md5($key)}}">
+                                             @foreach ($emotions as $emotionKey => $emotion)
+                                             @if ($key)
+                                             <input type="text" value="{{$emotion}}" class="emojis hidden">
+                                             <button type="button" wire:key="{{$emotionKey}}"
+                                                class="p-1 hover:bg-gray-400 rounded-md emoji_btn">
+                                                <span class="text-lg space-x-1 " data="{{$emotion}}"
+                                                   id="emojis.{{md5($emotionKey)}}">{!!$emotion !!}</span>
+                                             </button>
+                                             @endif
+                                             @endforeach
+                                          </li>
+                                          @endforeach
+                                       </ul>
+                                    </div>
+                                 </form>
                               </div>
                            </div>
+
 
                            {{-- unicode emoji --}}
 
@@ -284,9 +289,7 @@
                                        wire:keydown.enter="sendMessage()"
                                        class="rounded-none  bg-gray-50  text-gray-900  focus:border-transparent block flex-1 min-w-0 text-sm py-2.5  dark:bg-gray-700 dark:border-transparent dark:placeholder-gray-400 dark:text-white  appearance-non flex-wrap text-justify overflow-hidden "
                                        placeholder="message">
-                                    {{-- <button>
-                                       <span class="inline-flex items-center px-3 text-xl">{{$face}}</span>
-                                    </button> --}}
+
                                     <div class="inline-flex items-center">
                                        <button type="button"
                                           class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg px-5 py-2 mx-2  dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700   text-xl">{{$face}}</button>
@@ -450,4 +453,21 @@
 
       </div>
    </div>
+   <script>
+      window.addEventListener('livewire:load', function (e) {
+         var emojis = document.getElementById('emojis');
+         
+         var emojiBtns = emojis.querySelectorAll('.emoji_btn');
+         emojiBtns.forEach(function (btn) {
+            btn.addEventListener('click', function (e) {
+               var emoji = e.target.title;
+               console.log(emoji);
+               var input = document.getElementById('inputMessage');
+               input.value = input.value + emoji;
+               input.focus();
+            });
+         });
+        
+      });
+   </script>
 </div>

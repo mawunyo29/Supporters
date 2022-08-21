@@ -50,6 +50,7 @@ Route::middleware([
         Route::get('/users/{user:slug}', ShowFriends::class)->name('friend');
         Route::match(['get', 'post'], '/posts/users/{user:slug}',UserPost::class)->name('posts.index');
         Route::post('/messages/message/user/{id}',[ChatMessage::class ,'chatMessage'])->name('message');
+        Route::get('/emoji',[ChatMessage::class , 'getEmojivalue'])->name('emoji');
     });
     Route::get('/auth/user',function(User $user ,Friend $friend){
             $this->user = auth()->check() ? auth()->user() : null;

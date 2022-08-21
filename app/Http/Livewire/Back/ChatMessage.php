@@ -27,6 +27,7 @@ class ChatMessage extends Component
     public $current_friend;
     public $users = [];
     public  Collection $emojis;
+    public $emoji;
 
 
 
@@ -84,7 +85,7 @@ class ChatMessage extends Component
     public function chatMessage($message)
     {
         $this->message = $message;
-
+dd($this->message);
         event(new SendMessageEvent($this->message, $this->user, $this->current_friend));
     }
 
@@ -195,15 +196,38 @@ class ChatMessage extends Component
 
     public function geEmoji()
     {
-        $emojis = LaravelJoyPixels::getClient()->getRuleset()->getShortcodeReplace();
+        $emojis = $this->clientJoyPixels()->getRuleset()->getShortcodeReplace();
     
+       
         foreach ($emojis as $key => $emoji) {
-            $this->emojis->push( [$key=>$emoji]) ;
-            $data[] = LaravelJoyPixels::getClient()->shortnameToImage($key);
+           
+            if($emoji[2] ){
+                $data[$emoji[2]][] =  $this->clientJoyPixels()->shortnameToImage($key);
+            }
+            
         }
 
         return $data;
     }
+
+    public function clientJoyPixels()
+    {
+        $emojis = LaravelJoyPixels::getClient();
+        return $emojis;
+    }
+
+    public function updatedMessage()
+    {
+        $this->message = $this->message;
+    }
+
+    public function getEmojivalue($emoji)
+    {
+        $this->message = '' .$emoji . ' ' . $this->message;
+        dd($this->message);
+      
+    }
+
     public function render()
     {
 
