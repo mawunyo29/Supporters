@@ -243,17 +243,7 @@
     @stack('scripts')
     @livewireScripts
     <script defer src="https://unpkg.com/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-
-    <script>
-        tinymce.init({
-          selector: "#mytextarea",
-          plugins: "emoticons",
-          toolbar: "emoticons",
-          toolbar_location: "bottom",
-          menubar: false
-        });
-      </script>
+    
 </body>
 
 </html>

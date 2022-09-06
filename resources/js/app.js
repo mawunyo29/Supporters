@@ -32,9 +32,10 @@ const getEvents = async () => {
       messagechannel.forEach(channel => {
 
 
-        if (inputMessage.value.length === 0 || e.keyCode === 13) {
+        if (inputMessage.innerHTML.length === 0 || e.keyCode === 13) {
 
           channel.whisper('stop-typing');
+          console.log(e);
 
         } else {
 
@@ -51,7 +52,7 @@ const getEvents = async () => {
       console.log('subscribed');
     }
     ).listen('.send.invitation', (e) => {
-      console.log(e.message);
+     
       window.Livewire.emit('notifyNewMessage', e.message);
       window.Livewire.emit('sendNotification');
       window.Livewire.emit('sendNotification:' + e.id);

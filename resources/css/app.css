@@ -177,3 +177,18 @@ body {
   font-size: 30px;
   text-shadow: 4px 4px 4px #aaa;
 }
+[contenteditable ="true"]:empty::before{
+  cursor: text;
+  content: attr(placeholder);
+  color: ghostwhite;
+  opacity: 0.3;
+}
+
+
+
+
+img.joypixels{
+ width: 1.5rem;
+ height: 1.7rem;
+}
+

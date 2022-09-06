@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "482ef25cdd702848e325d32e37fb5dba",
+    "content-hash": "d3f72c71af0621acda41d63879d1be39",
     "packages": [
         {
             "name": "andkab/laravel-joypixels",
@@ -1562,6 +1562,46 @@
                 }
             ],
             "time": "2020-06-13T08:05:20+00:00"
+        },
+        {
+            "name": "joypixels/assets",
+            "version": "v7.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/joypixels/emoji-assets.git",
+                "reference": "f0701cbb93c253ea1f1dbad50e762345344c3474"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/joypixels/emoji-assets/zipball/f0701cbb93c253ea1f1dbad50e762345344c3474",
+                "reference": "f0701cbb93c253ea1f1dbad50e762345344c3474",
+                "shasum": ""
+            },
+            "suggest": {
+                "joypixels/emoji-toolkit": "A set of libraries to make using emoji on your websites easier."
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "description": "Emoji in png format brought to you by JoyPixels. JoyPixels is a complete set of emojis designed for the web. Licensing required: https://www.joypixels.com/licenses.",
+            "homepage": "https://www.joypixels.com",
+            "keywords": [
+                "JoyPixels",
+                "emoji",
+                "emojione",
+                "emojis",
+                "emoticons",
+                "smileys",
+                "smilies",
+                "unicode"
+            ],
+            "support": {
+                "issues": "https://github.com/joypixels/emoji-assets/issues",
+                "source": "https://github.com/joypixels/emoji-assets/tree/v7.0.0"
+            },
+            "time": "2022-07-18T00:57:55+00:00"
         },
         {
             "name": "joypixels/emoji-toolkit",

@@ -5,11 +5,13 @@ namespace App\Http\Livewire\Back;
 use andkab\LaravelJoyPixels\LaravelJoyPixels;
 use App\Events\SendMessageEvent;
 use App\Models\User;
+use DOMComment;
 use Illuminate\Support\Collection;
 use Livewire\Component;
 
 
 use function PHPSTORM_META\map;
+use function PHPUnit\Framework\isEmpty;
 
 class ChatMessage extends Component
 {
@@ -34,7 +36,7 @@ class ChatMessage extends Component
     public function mount($user)
     {
         $this->user = $user;
-        $this->emojis=collect([]);
+        $this->emojis = collect([]);
     }
     //     protected $listeners = ["sendNotification" => 'notifyNewUser',
     //     'typingMessage','getFriendById'
@@ -84,9 +86,34 @@ class ChatMessage extends Component
 
     public function chatMessage($message)
     {
-        $this->message = $message;
-dd($this->message);
-        event(new SendMessageEvent($this->message, $this->user, $this->current_friend));
+        $searchs = [
+            "&amp",
+            "nbsp",
+            "&lt",
+            "div&gt",
+            "br&gt",
+            "/div&gt",
+            "",
+            "&;",
+            "<div>",
+            "</div>",
+            "<br>",
+            "</br>"
+
+        ];
+
+        $replace = str_replace($searchs, "", $message);
+        $str = trim($replace);
+
+        if (strlen($str) > 0 && $str != "") {
+
+            $this->message .= $message;
+
+            event(new SendMessageEvent($this->message, $this->user, $this->current_friend));
+            $this->message = '';
+        } else {
+            return;
+        }
     }
 
     public function selectFriendById($id)
@@ -194,17 +221,16 @@ dd($this->message);
 
     ];
 
-    public function geEmoji()
+    public function getEmoji()
     {
         $emojis = $this->clientJoyPixels()->getRuleset()->getShortcodeReplace();
-    
-       
+
+
         foreach ($emojis as $key => $emoji) {
-           
-            if($emoji[2] ){
+
+            if ($emoji[2]) {
                 $data[$emoji[2]][] =  $this->clientJoyPixels()->shortnameToImage($key);
             }
-            
         }
 
         return $data;
@@ -216,23 +242,19 @@ dd($this->message);
         return $emojis;
     }
 
-    public function updatedMessage()
-    {
-        $this->message = $this->message;
-    }
+
 
     public function getEmojivalue($emoji)
     {
-        $this->message = '' .$emoji . ' ' . $this->message;
-        dd($this->message);
-      
+        $this->message = htmlspecialchars_decode($emoji) . $this->message;
     }
+
 
     public function render()
     {
 
 
-        $data = $this->geEmoji();
+        $data = $this->getEmoji();
         $face = '😎';
         return view('livewire.back.chat-message', compact('face', 'data'));
     }

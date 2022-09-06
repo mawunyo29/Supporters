@@ -5068,8 +5068,9 @@ var getEvents = /*#__PURE__*/function () {
               var typingMessage = document.getElementById('typingMessage');
               inputMessage.addEventListener('input', function (e) {
                 messagechannel.forEach(function (channel) {
-                  if (inputMessage.value.length === 0 || e.keyCode === 13) {
+                  if (inputMessage.innerHTML.length === 0 || e.keyCode === 13) {
                     channel.whisper('stop-typing');
+                    console.log(e);
                   } else {
                     channel.whisper('typing', {
                       user: window.user.name
@@ -5080,7 +5081,6 @@ var getEvents = /*#__PURE__*/function () {
               invitationchannel.subscribed(function () {
                 console.log('subscribed');
               }).listen('.send.invitation', function (e) {
-                console.log(e.message);
                 window.Livewire.emit('notifyNewMessage', e.message);
                 window.Livewire.emit('sendNotification');
                 window.Livewire.emit('sendNotification:' + e.id);
